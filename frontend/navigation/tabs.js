@@ -6,7 +6,13 @@ import ElectricianScreen from "../screens/Electrician";
 import MapScreen from "../screens/Map";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 
 const Tab = createBottomTabNavigator();
 
