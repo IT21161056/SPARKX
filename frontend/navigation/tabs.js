@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/Home";
 import CartScreen from "../screens/Cart";
-import ElectricianScreen from "../screens/Electrician";
+import ElectriciansScreen from "../screens/Electricians";
 import MapScreen from "../screens/Map";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
@@ -95,8 +95,8 @@ export default function Tabs() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Electricians"
+        component={ElectriciansScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
