@@ -7,7 +7,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
   import { markers } from "../model/mapData"
 
   const { width, height } = Dimensions.get("window");
-  const CARD_HEIGHT = 200;
+  const CARD_HEIGHT = 212;
   const CARD_WIDTH = width * 0.7;
   const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
   
@@ -239,7 +239,6 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
               >
                   {
                       state.markers.map((marker, index) => (
-                        <View style={{paddingBottom:45}} key={index}>
                           <View style={styles.card} key={index}>
                               <Image
                                   source={marker.image}
@@ -266,7 +265,6 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
   
                               </View>
                           </View>
-                          </View>
                       ))
                   }
               </Animated.ScrollView>
@@ -286,7 +284,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
       },
       searchBox: {
           position: 'absolute',
-          marginTop: Platform.OS === 'ios' ? 40 : 15,
+          marginTop: Platform.OS === 'ios' ? 40 : 35,
           flexDirection: "row",
           backgroundColor: '#fff',
           width: '90%',
@@ -307,7 +305,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
       },
       chipsScrollView: {
           position: 'absolute',
-          top: Platform.OS === 'ios' ? 90 : 60,
+          top: Platform.OS === 'ios' ? 90 : 80,
           paddingHorizontal: 10
       },
       chipsIcon: {
@@ -346,6 +344,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Animated, Image,
           borderTopRightRadius: 5,
           marginHorizontal: 10,
           shadowColor: "#000",
+          marginBottom:30,
           borderCurve: 25,
           shadowRadius: 5,
           shadowOpacity: 0.3,
