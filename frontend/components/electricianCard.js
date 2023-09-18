@@ -10,7 +10,6 @@ import {
   Button,
 } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
-import e1 from '../assets/e1.png';
 
 const style = StyleSheet.create({
   personImage: {
@@ -18,7 +17,7 @@ const style = StyleSheet.create({
     height: "100%",
   },
   textBlockCard: {
-    fontSize: 16,
+    fontSize: 11,
     marginBottom: 10,
   }
 });
@@ -28,14 +27,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     padding: 20,
+    fontSize: 16,
+    marginBottom: 10
   },
   textBlockContainer: {
     alignItems: 'center',
   },
 });
 
-
-export default function ItemCard() {
+export default function ElectricianCard( { data }) {
   return (
     <TouchableOpacity activeOpacity={0.5}>
       <View
@@ -70,22 +70,18 @@ export default function ItemCard() {
           }}
         >
           <Image 
-            source={e1} 
+            source={data.imageUrl} 
             resizeMode="center" 
             style={style.personImage} 
           />
         </View>
         <View style={styles.container}>
-            <Text style={style.textBlockCard}>Name :</Text>
-            <Text style={style.textBlockCard}>Age :</Text>
-            <Text style={style.textBlockCard}>Location :</Text>
-            <Text style={style.textBlockCard}>Rating :</Text>
+            <Text style={style.textBlockCard} >Name: {data.name}</Text>
+            <Text style={style.textBlockCard} >Age: {data.age}</Text>
+            <Text style={style.textBlockCard} >Location: {data.location}</Text>
+            <Text style={style.textBlockCard} >Rating: {data.rating}</Text>
             <Button 
                 title="More Info"
-                style={{
-                  width: 200,
-                  borderRadius: 10, 
-                }}
             />
         </View>
       </View>

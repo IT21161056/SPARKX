@@ -3,7 +3,6 @@ import { SIZES, COLORS } from "../constants/theme";
 import MyButton from "../components/customeBtn";
 import searchIcon from "../assets/search.png";
 import ElectricianCard from "../components/electricianCard";
-import RecomendedItemCard from "../components/recomendedItemCard";
 import {
   View,
   Text,
@@ -15,10 +14,56 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+const electriciansData = [
+  {
+    id: 1,
+    name: "Ashan Perera",
+    age: 34,
+    location: "Hoamagama",
+    rating: 4.7,
+    imageUrl: require('../assets/e1.png'),
+  },
+  {
+    id: 2,
+    name: "Deshan Fernando",
+    age: 28,
+    location: "Kottawa",
+    rating: 4.4,
+    imageUrl: require('../assets/e9.jpg'),
+  },
+  {
+    id: 3,
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    rating: 4.3,
+    imageUrl: require('../assets/e6.jpg'),
+  },
+
+  {
+    id: 4,
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    rating: 4.3,
+    imageUrl: require('../assets/e6.jpg'),
+  },
+
+  {
+    id: 5,
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    rating: 4.3,
+    imageUrl: require('../assets/e6.jpg'),
+  },
+  
+];
+
 const data = [1, 2, 3, 4, 5];
 const jobTypes = ["All", "Electrcians", "House Wiring", "A/C Repair"];
 
-export default function Home() {
+export default function Electrcians() {
   const [activeItemType, setActiveItemType] = useState("All");
 
   return (
@@ -53,38 +98,17 @@ export default function Home() {
             />
             <MyButton iconUrl={searchIcon} dimension="80%" />
           </View>
-          <View style={style.tabsContainer}>
-            <FlatList
-              data={jobTypes}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={style.tab(activeItemType, item)}
-                  onPress={() => {
-                    setActiveItemType(item);
-                  }}
-                >
-                  <Text style={style.tabText(activeItemType, item)}>
-                    {item}
-                  </Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item}
-              contentContainerStyle={{ columnGap: SIZES.small }}
-              horizontal
-            />
-          </View>
           <View>
             <FlatList
-              data={data}
-              renderItem={({ item }) => <ElectricianCard/>}
-              keyExtractor={(item) => item}
+              data={ electriciansData }
+              renderItem={({ item }) => <ElectricianCard data={ item }/>}
+              keyExtractor={(item) => item.id.toString()}
               contentContainerStyle={{ columnGap: SIZES.small }}
               vertical
               showsHorizontalScrollIndicator={false}
               style={{
                 paddingTop: SIZES.medium,
                 paddingBottom: SIZES.medium,
-                // backgroundColor: "#456",
               }}
             />
           </View>
