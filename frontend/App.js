@@ -7,6 +7,7 @@ import ElectricianMoreInfo from "./screens/ElectricianMoreInfo";
 const Stack = createStackNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Tabs />
