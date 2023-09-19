@@ -22,6 +22,7 @@ export default function Home() {
   const [activeItemType, setActiveItemType] = useState("All");
 
   return (
+    
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.large }}>

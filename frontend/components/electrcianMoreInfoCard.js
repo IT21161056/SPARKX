@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ElectricianCard( { data }) {
+export default function ElectricianMoreInfoCard( { data }) {
 
   const navigation = useNavigation();
   
@@ -60,18 +60,6 @@ export default function ElectricianCard( { data }) {
         }}
       >
         <View
-          style={{
-            width: "50%",
-            height: "80%",
-            marginTop: 15,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#fff",
-            borderWidth: 0.5,
-            borderRadius: 15,
-            borderColor: "#000", 
-          }}
         >
           <Image 
             source={data.imageUrl} 
@@ -80,12 +68,14 @@ export default function ElectricianCard( { data }) {
           />
         </View>
         <View style={styles.container}>
-            <Text style={style.textBlockCard} >Name: {data.name}</Text>
-            <Text style={style.textBlockCard} >Age: {data.age}</Text>
-            <Text style={style.textBlockCard} >Location: {data.location}</Text>
-            <Text style={style.textBlockCard} >Rating: {data.rating}</Text>
             <Button 
-                title="More Info"
+                title="Book Now"
+                onPress={() => {
+                  navigation.navigate("ElectricianMoreInfo", { data });
+                }}
+            />
+            <Button 
+                title="Rate Electrician"
                 onPress={() => {
                   navigation.navigate("ElectricianMoreInfo", { data });
                 }}
