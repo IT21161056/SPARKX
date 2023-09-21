@@ -20,7 +20,7 @@ const electriciansData = [
     name: "Ashan Perera",
     age: 34,
     location: "Hoamagama",
-    rating: 4.7,
+    mobileNo : "073637100",
     imageUrl: require('../assets/e1.png'),
   },
   {
@@ -28,7 +28,7 @@ const electriciansData = [
     name: "Deshan Fernando",
     age: 28,
     location: "Kottawa",
-    rating: 4.4,
+    mobileNo : "073637100",
     imageUrl: require('../assets/e9.jpg'),
   },
   {
@@ -36,7 +36,7 @@ const electriciansData = [
     name: "Nimal Perera",
     age: 35,
     location: "Matara",
-    rating: 4.3,
+    mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
   },
 
@@ -45,7 +45,7 @@ const electriciansData = [
     name: "Nimal Perera",
     age: 35,
     location: "Matara",
-    rating: 4.3,
+    mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
   },
 
@@ -54,7 +54,7 @@ const electriciansData = [
     name: "Nimal Perera",
     age: 35,
     location: "Matara",
-    rating: 4.3,
+    mobileNo: "073637100",
     imageUrl: require('../assets/e6.jpg'),
   },
   
@@ -68,7 +68,6 @@ export default function Electrcians() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.large }}>
 
           <View
@@ -85,11 +84,8 @@ export default function Electrcians() {
                 fontSize: SIZES.medium,
                 color: COLORS.gray,
                 backgroundColor: "#fff",
-
                 borderStyle: "solid",
-
-                borderWidth: 2,
-                borderColor: "#3E92CC",
+                borderWidth: 1,
                 borderRadius: SIZES.small,
                 padding: SIZES.small,
                 height: 48,
@@ -97,6 +93,27 @@ export default function Electrcians() {
               placeholder="Search items..."
             />
             <MyButton iconUrl={searchIcon} dimension="80%" />
+          </View>
+          <View style={style.tabsContainer} >
+            <FlatList
+              data={jobTypes}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={style.tab(activeItemType, item)}
+                  onPress={() => {
+                    setActiveItemType(item);
+                  }}
+                >
+                  <Text style={style.tabText(activeItemType, item)}>
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item}
+              contentContainerStyle={{ columnGap: SIZES.small }}
+              horizontal
+            />
           </View>
           <View>
             <FlatList
@@ -113,7 +130,6 @@ export default function Electrcians() {
             />
           </View>
         </View>
-      </ScrollView>
     </SafeAreaView>
   );
 }

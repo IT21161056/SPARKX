@@ -19,7 +19,7 @@ const style = StyleSheet.create({
     height: "100%",
   },
   textBlockCard: {
-    fontSize: 11,
+    fontSize: 14,
     marginBottom: 10,
   }
 });
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     padding: 20,
-    fontSize: 16,
     marginBottom: 10
   },
   textBlockContainer: {
@@ -37,11 +36,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ElectricianMoreInfoCard( { data }) {
+export default function ElectricianMoreInfoCard( { route }) {
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
+  // const { data } = route.params;
+  // const image = data.imageUrl;
+  // const name = data.name;
   
   return (
+  
       <View
         style={{
           width: 350,
@@ -59,28 +62,6 @@ export default function ElectricianMoreInfoCard( { data }) {
           elevation: 3,
         }}
       >
-        <View
-        >
-          <Image 
-            source={data.imageUrl} 
-            resizeMode="center" 
-            style={style.personImage} 
-          />
-        </View>
-        <View style={styles.container}>
-            <Button 
-                title="Book Now"
-                onPress={() => {
-                  navigation.navigate("ElectricianMoreInfo", { data });
-                }}
-            />
-            <Button 
-                title="Rate Electrician"
-                onPress={() => {
-                  navigation.navigate("ElectricianMoreInfo", { data });
-                }}
-            />
-        </View>
       </View>
   );
 }

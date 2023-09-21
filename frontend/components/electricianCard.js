@@ -19,7 +19,8 @@ const style = StyleSheet.create({
     height: "100%",
   },
   textBlockCard: {
-    fontSize: 11,
+    fontSize: 13,
+    fontStyle: "normal",
     marginBottom: 10,
   }
 });
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     padding: 20,
-    fontSize: 16,
     marginBottom: 10
   },
   textBlockContainer: {
@@ -61,14 +61,14 @@ export default function ElectricianCard( { data }) {
       >
         <View
           style={{
-            width: "50%",
+            width: "40%",
             height: "80%",
             marginTop: 15,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#fff",
-            borderWidth: 0.5,
+            borderWidth: 1,
             borderRadius: 15,
             borderColor: "#000", 
           }}
@@ -76,20 +76,26 @@ export default function ElectricianCard( { data }) {
           <Image 
             source={data.imageUrl} 
             resizeMode="center" 
-            style={style.personImage} 
+            style={style.personImage}
           />
         </View>
         <View style={styles.container}>
             <Text style={style.textBlockCard} >Name: {data.name}</Text>
             <Text style={style.textBlockCard} >Age: {data.age}</Text>
             <Text style={style.textBlockCard} >Location: {data.location}</Text>
-            <Text style={style.textBlockCard} >Rating: {data.rating}</Text>
-            <Button 
+            <Text style={style.textBlockCard} >Mobile No: {data.mobileNo}</Text>
+            <View style={{ 
+              borderRadius: 15, 
+              overflow: 'hidden',
+              marginTop: 10
+            }}>
+              <Button
                 title="More Info"
                 onPress={() => {
                   navigation.navigate("ElectricianMoreInfo", { data });
                 }}
-            />
+              />
+          </View>
         </View>
       </View>
   );

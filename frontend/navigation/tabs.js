@@ -3,15 +3,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import CartScreen from "../screens/Cart";
-<<<<<<< HEAD
-import ElectriciansScreen from "../screens/Electricians";
-=======
 import HomeScreen from "../screens/Home";
->>>>>>> 492b753e3e158e31d32efc064220921070da6180
 import MapScreen from "../screens/Map";
 import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
+import Electricians from "../screens/Electricians";
+import ElectrciansMoreInfo from "../screens/ElectricianMoreInfo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -103,8 +101,7 @@ export default function Tabs() {
       </Tab.Screen>
 
       <Tab.Screen
-        name="Electricians"
-        component={ElectriciansScreen}
+        name="Electrician"
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -120,7 +117,14 @@ export default function Tabs() {
             </View>
           ),
         }}
-      />
+      >
+        {() => (
+          <Stack.Navigator>
+            <Stack.Screen name="Electricians" component={Electricians} />
+            <Stack.Screen name="ElectrciansMoreInfo" component={ElectrciansMoreInfo} />
+          </Stack.Navigator>
+        )}
+      </Tab.Screen>
 
       <Tab.Screen
         name="Cart"

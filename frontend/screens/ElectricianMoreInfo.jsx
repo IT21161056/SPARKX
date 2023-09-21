@@ -1,21 +1,36 @@
-import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
-import ElectricianMoreInfoCard from '../components/electrcianMoreInfoCard';
-import { FlatList } from 'react-native-gesture-handler';
+import React, { useState } from "react";
+import { SIZES, COLORS } from "../constants/theme";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TextInput,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
-export default function ElectricianMoreInfo ({ route })  {
+const style = StyleSheet.create({
+  headerText: {
+    fontSize: SIZES.xLarge
+  }
+})
 
-  const { data } = route.params;
+export default function ElectricianMoreInfo ({route})  {
+
+  const data = route.params;
+  const name = data.name;
 
   return (
-    <SafeAreaView>
-        <View>
-        {/* <FlatList
-            renderItem={({ item }) => <ElectricianMoreInfoCard data = { item }/>}
-        /> */}
-        <Text></Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+        <View style={{ flex: 1, padding: SIZES.large }}>
+          <View>
+            <Text style={style.headerText}>{name}</Text>
+          </View>
         </View>
     </SafeAreaView>
   )
 }
+
 
