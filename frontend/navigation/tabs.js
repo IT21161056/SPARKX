@@ -13,26 +13,28 @@ import {
   View,
   KeyboardAvoidingView,
 } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import OutageScreen from "../screens/OutageScreen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        // headerShown: false,
-        tabBarHideOnKeyboard: true,
+        headerShown: false,
         headerShadowVisible: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          bottom: 10,
+          bottom: 1,
           left: 20,
           right: 20,
           elevation: 0,
           backgroundColor: "#fff",
           borderRadius: 15,
-          height: 70,
+          height: 50,
           ...styles.shadow,
         },
       }}
@@ -77,8 +79,7 @@ export default function Tabs() {
         }}
       />
       <Tab.Screen
-        name="Map"
-        component={MapScreen}
+        name="OutageMap"
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -94,7 +95,15 @@ export default function Tabs() {
             </View>
           ),
         }}
-      />
+      >
+        {() => (
+          <Stack.Navigator>
+            <Stack.Screen name="Map" component={MapScreen} />
+            <Stack.Screen name="Outage" component={OutageScreen} />
+          </Stack.Navigator>
+        )}
+      </Tab.Screen>
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
