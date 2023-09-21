@@ -1,20 +1,17 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/Home";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
 import CartScreen from "../screens/Cart";
+<<<<<<< HEAD
 import ElectriciansScreen from "../screens/Electricians";
+=======
+import HomeScreen from "../screens/Home";
+>>>>>>> 492b753e3e158e31d32efc064220921070da6180
 import MapScreen from "../screens/Map";
+import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  KeyboardAvoidingView,
-} from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import OutageScreen from "../screens/OutageScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,9 +23,10 @@ export default function Tabs() {
         headerShown: false,
         headerShadowVisible: false,
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: "absolute",
-          bottom: 1,
+          bottom: 20,
           left: 20,
           right: 20,
           elevation: 0,
@@ -96,14 +94,14 @@ export default function Tabs() {
           ),
         }}
       >
-     {() => (
-        <Stack.Navigator>
-          <Stack.Screen name="Map" component={MapScreen} />
-          <Stack.Screen name="Outage" component={OutageScreen} />
-        </Stack.Navigator>
-     )}
+        {() => (
+          <Stack.Navigator>
+            <Stack.Screen name="Map" component={MapScreen} />
+            <Stack.Screen name="Outage" component={OutageScreen} />
+          </Stack.Navigator>
+        )}
       </Tab.Screen>
-      
+
       <Tab.Screen
         name="Electricians"
         component={ElectriciansScreen}
