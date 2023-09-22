@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, 
          SafeAreaView, 
          FlatList,
@@ -13,29 +14,43 @@ export default function ElectricianMoreInfo( { route }) {
   // Retrieve the electrician data passed from ElectricianCard
   const electricianData = route.params.electricianData;
 
+  const navigation = useNavigation();
+  const navigateToBookking = () => {
+    navigation.navigate("ConfirmBooking", { electricianData});
+  }
+
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <View style={{ flex: 1, padding: SIZES.large }}>
         {/* Display the selected electrician's data here */}
-        <Image
-          source={electricianData.imageUrl}
-          resizeMode="cover"
-          style={styles.personImage}
-        />
+        <View>
+          <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
+        </View>
+        <View style={styles.imageAndContainer0}>
+          <Image
+            source={electricianData.imageUrl}
+            resizeMode="cover"
+            style={styles.personImage}
+          />
+          <View style={styles.container0}>
+            <Text style={styles.textBlockCard1} ></Text>
+          </View>
+        </View>
         <View style={styles.container1}>
-          <Text style={styles.textBlockCard} >Name: {electricianData.name}</Text>
-          <Text style={styles.textBlockCard} >Age: {electricianData.age}</Text>
-          <Text style={styles.textBlockCard} >Location: {electricianData.location}</Text>
-          <Text style={styles.textBlockCard} >Mobile No: {electricianData.mobileNo}</Text>
+          <Text style={styles.textBlockCar2} >Name: {electricianData.name}</Text>
+          <Text style={styles.textBlockCar2} >Age: {electricianData.age}</Text>
+          <Text style={styles.textBlockCar2} >Location: {electricianData.location}</Text>
+          <Text style={styles.textBlockCar2} >Mobile No: {electricianData.mobileNo}</Text>
         </View>
 
         <View style={styles.container2}>
-          <Text style={styles.textBlockCard} ></Text>
-          <Text style={styles.textBlockCard} ></Text>
-          <Text style={styles.textBlockCard} ></Text>
-          <Text style={styles.textBlockCard} ></Text>
+          <Text style={styles.textBlockCar3} >Availability</Text>
+          <Text style={styles.textBlockCar3} ></Text>
+          <Text style={styles.textBlockCar3} >Qualification/ Experience</Text>
+          <Text style={styles.textBlockCar3} ></Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={navigateToBookking}>
             <Text 
               style={{
                 borderRadius: SIZES.small,
@@ -48,7 +63,7 @@ return (
                 marginLeft: 90,
                 backgroundColor: "#096FCC"
               }}>
-                  Confirm Booking
+                  Book Now
             </Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -64,7 +79,7 @@ return (
                 marginLeft: 90,
                 backgroundColor: "#096FCC"
               }}>
-                  Show Feedbacks
+                  View Feedbacks
             </Text>
         </TouchableOpacity>
       </View>
@@ -73,32 +88,56 @@ return (
 }
 
 const styles = StyleSheet.create({
+  imageAndContainer0: {
+    flexDirection: "row", // Arrange the image and container0 horizontally
+    alignItems: "flex-end"
+  },
   personImage: {
     width: 180, // Set a fixed width
     height: 180, // Set a fixed height
     resizeMode: "cover",
     borderRadius: SIZES.medium,
-    borderWidth: 0.5, // Add border width
+    borderWidth: 0.4, // Add border width
+    borderColor: "#096FCC",
+  },
+  container0: {
+    flex: 1,
+    width: "50%",
+    height: 100,
+    flexDirection: "column",
+    borderRadius: SIZES.medium,
+    alignItems: "center",
+    padding: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    backgroundColor: COLORS.white,
+    marginLeft: 10,
+    elevation: 3,
+    borderWidth: 0.4,
     borderColor: "#096FCC",
   },
   container1: {
     width: "100%",
-    height: 130,
+    height: 100,
     flexDirection: "column",
     borderRadius: SIZES.medium,
     alignItems: "center",
-    padding: 3,
+    padding: 4,
     shadowColor: "#000",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
     backgroundColor: COLORS.white,
-    margin: 10,
+    marginTop: 10,
     elevation: 3,
+    borderWidth: 0.4,
+    borderColor: "#096FCC",
   },
   container2: {
     width: "100%",
-    height: 170,
+    height: 210,
     flexDirection: "column",
     borderRadius: SIZES.medium,
     alignItems: "center",
@@ -106,10 +145,12 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowRadius: 10,
     backgroundColor: COLORS.white,
-    margin: 10,
+    marginTop: 10,
     elevation: 3,
+    borderWidth: 0.4,
+    borderColor: "#096FCC",
   },
   imageContainer: {
     width: 200,
@@ -120,12 +161,19 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    padding: SIZES.medium,
   },
-  textBlockCard: {
-    fontSize: 15,
+  textBlockCard0: {
+    fontSize: SIZES.large,
+    marginLeft: 5
+  },
+  textBlockCard1: {
+    fontSize: SIZES.medium,
+  },
+  textBlockCar2: {
+    fontSize: SIZES.medium,
+  },
+  textBlockCar3: {
+    fontSize: SIZES.medium,
     marginBottom: SIZES.small,
-    // borderColor: COLORS.primary,
-    // borderWidth: 2
   },
 });
