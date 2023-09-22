@@ -57,10 +57,19 @@ const electriciansData = [
     mobileNo: "073637100",
     imageUrl: require('../assets/e6.jpg'),
   },
+
+  {
+    id: 6,
+    name: "Hashan Perera",
+    age: 35,
+    location: "Maharagama",
+    mobileNo: "073638100",
+    imageUrl: require('../assets/e6.jpg'),
+  },
   
 ];
 
-const data = [1, 2, 3, 4, 5];
+const data = [1, 2, 3, 4, 5, 6];
 const jobTypes = ["All", "Electrcians", "House Wiring", "A/C Repair"];
 
 export default function Electrcians() {

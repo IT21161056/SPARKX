@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
 export default function ElectricianCard( { data }) {
 
   const navigation = useNavigation();
+
+  const navigateToMoreInfo = () => {
+    navigation.navigate("ElectricianMoreInfo", { electricianData: data});
+  }
   
   return (
       <View
@@ -89,12 +93,20 @@ export default function ElectricianCard( { data }) {
               overflow: 'hidden',
               marginTop: 10
             }}>
-              <Button
-                title="More Info"
-                onPress={() => {
-                  navigation.navigate("ElectricianMoreInfo", { data });
-                }}
-              />
+              <TouchableOpacity
+                onPress={navigateToMoreInfo}>
+                <Text 
+                  style={{
+                    borderRadius: SIZES.small,
+                    color: "white",
+                    fontSize: 16,
+                    textAlign: "center",
+                    padding: 5,
+                    backgroundColor: "#096FCC"
+                  }}>
+                  More Info
+                </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

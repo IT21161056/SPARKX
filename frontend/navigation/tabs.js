@@ -9,7 +9,7 @@ import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
 import Electricians from "../screens/Electricians";
-import ElectrciansMoreInfo from "../screens/ElectricianMoreInfo";
+import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -121,7 +121,7 @@ export default function Tabs() {
         {() => (
           <Stack.Navigator>
             <Stack.Screen name="Electricians" component={Electricians} />
-            <Stack.Screen name="ElectrciansMoreInfo" component={ElectrciansMoreInfo} />
+            <Stack.Screen name="ElectricianMoreInfo" component={ElectricianMoreInfo} />
           </Stack.Navigator>
         )}
       </Tab.Screen>
