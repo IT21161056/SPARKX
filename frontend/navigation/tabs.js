@@ -22,7 +22,7 @@ export default function Tabs() {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: "absolute",
-          bottom: 20,
+          bottom: 8,
           left: 20,
           right: 20,
           elevation: 0,
@@ -91,7 +91,7 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{headerShown:'false'}}>
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Outage" component={OutageScreen} />
           </Stack.Navigator>
