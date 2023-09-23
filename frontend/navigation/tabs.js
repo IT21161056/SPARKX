@@ -19,9 +19,9 @@ export default function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
-        headerShadowVisible: false,
-        tabBarShowLabel: false,
+        // headerShown: false,
+        // headerShadowVisible: false,
+        // tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: "absolute",
@@ -31,13 +31,14 @@ export default function Tabs() {
           elevation: 0,
           backgroundColor: "#fff",
           borderRadius: 15,
-          height: 50,
+          height: 70,
           ...styles.shadow,
         },
       }}
     >
       <Tab.Screen
-        name="Items"
+        name="Store"
+        tabBarLabelPosition="center"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -122,7 +123,10 @@ export default function Tabs() {
         {() => (
           <Stack.Navigator>
             <Stack.Screen name="Electricians" component={Electricians} />
-            <Stack.Screen name="ElectricianMoreInfo" component={ElectricianMoreInfo} />
+            <Stack.Screen
+              name="ElectricianMoreInfo"
+              component={ElectricianMoreInfo}
+            />
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
           </Stack.Navigator>
         )}
