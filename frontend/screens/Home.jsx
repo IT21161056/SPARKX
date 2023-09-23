@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SIZES, COLORS } from "../constants/theme";
 import MyButton from "../components/customeBtn";
 import searchIcon from "../assets/search.png";
