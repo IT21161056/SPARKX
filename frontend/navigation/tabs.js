@@ -8,6 +8,9 @@ import MapScreen from "../screens/Map";
 import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
+import Electricians from "../screens/Electricians";
+import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
+import ConfirmBooking from "../screens/ConfirmBooking";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -99,8 +102,7 @@ export default function Tabs() {
       </Tab.Screen>
 
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Electrician"
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -116,7 +118,15 @@ export default function Tabs() {
             </View>
           ),
         }}
-      />
+      >
+        {() => (
+          <Stack.Navigator>
+            <Stack.Screen name="Electricians" component={Electricians} />
+            <Stack.Screen name="ElectricianMoreInfo" component={ElectricianMoreInfo} />
+            <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
+          </Stack.Navigator>
+        )}
+      </Tab.Screen>
 
       <Tab.Screen
         name="Cart"
