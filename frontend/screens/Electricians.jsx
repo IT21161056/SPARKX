@@ -77,6 +77,7 @@ export default function Electrcians() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+       <ScrollView>
         <View style={{ flex: 1, padding: SIZES.large }}>
 
           <View
@@ -139,6 +140,7 @@ export default function Electrcians() {
             />
           </View>
         </View>
+        </ScrollView>
     </SafeAreaView>
   );
 }

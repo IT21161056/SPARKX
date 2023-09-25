@@ -11,6 +11,7 @@ import TipsScreen from "../screens/Tips";
 import Electricians from "../screens/Electricians";
 import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
 import ConfirmBooking from "../screens/ConfirmBooking";
+import ViewFeedbacks from "../screens/ViewFeedbacks";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -124,6 +125,7 @@ export default function Tabs() {
             <Stack.Screen name="Electricians" component={Electricians} />
             <Stack.Screen name="ElectricianMoreInfo" component={ElectricianMoreInfo} />
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
+            <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
           </Stack.Navigator>
         )}
       </Tab.Screen>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, 
          SafeAreaView, 
@@ -8,15 +8,35 @@ import { View,
          Text,
          TouchableOpacity } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
+import * as Font from 'expo-font';
+
 
 export default function ElectricianMoreInfo( { route }) {
 
   // Retrieve the electrician data passed from ElectricianCard
   const electricianData = route.params.electricianData;
 
+  useEffect(() => {
+  async function loadCustomFont() {
+    try {
+      await Font.loadAsync({
+        "RedHatDisplay-SemiBold": require("../assets/fonts/RedHatDisplay-SemiBold.ttf"),
+      });
+      console.log("Font loaded successfully");
+    } catch (error) {
+      console.log("Font loading error:", error);
+    }
+  }
+  loadCustomFont();
+  }, []);
+
   const navigation = useNavigation();
-  const navigateToBookking = () => {
+  const navigateToBooking = () => {
     navigation.navigate("ConfirmBooking", { electricianData});
+  }
+
+  const navigateToFeedbacks = () => {
+    navigation.navigate("ViewFeedbacks", { electricianData });
   }
 
 return (
@@ -37,20 +57,20 @@ return (
           </View>
         </View>
         <View style={styles.container1}>
-          <Text style={styles.textBlockCar2} >Name: {electricianData.name}</Text>
-          <Text style={styles.textBlockCar2} >Age: {electricianData.age}</Text>
-          <Text style={styles.textBlockCar2} >Location: {electricianData.location}</Text>
-          <Text style={styles.textBlockCar2} >Mobile No: {electricianData.mobileNo}</Text>
+          <Text style={styles.textBlockCard2} >Name: {electricianData.name}</Text>
+          <Text style={styles.textBlockCard2} >Age: {electricianData.age}</Text>
+          <Text style={styles.textBlockCard2} >Location: {electricianData.location}</Text>
+          <Text style={styles.textBlockCard2} >Mobile No: {electricianData.mobileNo}</Text>
         </View>
 
         <View style={styles.container2}>
-          <Text style={styles.textBlockCar3} >Availability</Text>
-          <Text style={styles.textBlockCar3} ></Text>
-          <Text style={styles.textBlockCar3} >Qualification/ Experience</Text>
-          <Text style={styles.textBlockCar3} ></Text>
+          <Text style={styles.textBlockCard3} >Availability</Text>
+          <Text style={styles.textBlockCard3} ></Text>
+          <Text style={styles.textBlockCard3} >Qualification/ Experience</Text>
+          <Text style={styles.textBlockCard3} ></Text>
         </View>
         <TouchableOpacity
-        onPress={navigateToBookking}>
+        onPress={navigateToBooking}>
             <Text 
               style={{
                 borderRadius: SIZES.small,
@@ -59,14 +79,16 @@ return (
                 width: 170,
                 textAlign: "center",
                 padding: 5,
-                marginTop: 10,
+                marginTop: 8,
                 marginLeft: 90,
-                backgroundColor: "#096FCC"
+                backgroundColor: "#096FCC",
+                lineHeight: 25
               }}>
                   Book Now
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+         onPress={navigateToFeedbacks}>
             <Text 
               style={{
                 borderRadius: SIZES.small,
@@ -75,9 +97,10 @@ return (
                 width: 170,
                 textAlign: "center",
                 padding: 5,
-                marginTop: 10,
+                marginTop: 8,
                 marginLeft: 90,
-                backgroundColor: "#096FCC"
+                backgroundColor: "#096FCC",
+                lineHeight: 25
               }}>
                   View Feedbacks
             </Text>
@@ -112,7 +135,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fff",
     marginLeft: 10,
     elevation: 3,
     borderWidth: 0.4,
@@ -129,15 +152,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    backgroundColor: COLORS.white,
-    marginTop: 10,
+    backgroundColor: "#fff",
+    marginTop: 8,
     elevation: 3,
     borderWidth: 0.4,
     borderColor: "#096FCC",
   },
   container2: {
     width: "100%",
-    height: 210,
+    height: 200,
     flexDirection: "column",
     borderRadius: SIZES.medium,
     alignItems: "center",
@@ -146,7 +169,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fff",
     marginTop: 10,
     elevation: 3,
     borderWidth: 0.4,
@@ -164,16 +187,19 @@ const styles = StyleSheet.create({
   },
   textBlockCard0: {
     fontSize: SIZES.large,
-    marginLeft: 5
+    marginLeft: 5,
+    fontFamily: "RedHatDisplay-SemiBold"
   },
   textBlockCard1: {
     fontSize: SIZES.medium,
   },
-  textBlockCar2: {
+  textBlockCard2: {
     fontSize: SIZES.medium,
+    fontFamily: "RedHatDisplay-SemiBold"
   },
-  textBlockCar3: {
+  textBlockCard3: {
     fontSize: SIZES.medium,
     marginBottom: SIZES.small,
+    fontFamily: "RedHatDisplay-SemiBold"
   },
 });

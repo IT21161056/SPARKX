@@ -5,15 +5,25 @@ import { View,
          StyleSheet,
          Image,
          Text,
-         TouchableOpacity } from "react-native";
+         TouchableOpacity,
+         TextInput,
+         Button, 
+         ScrollView} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
 
 const ConfirmBooking = ( {route} ) => {
 
-const electricianData = route.params.electricianData;
+  const navigation = useNavigation();
+
+    const handleConfirmBooking = () => {
+      navigation.navigate('ElectricianMoreInfo', {electricianData});
+  };
+
+  const electricianData = route.params?.electricianData;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+    <ScrollView>
       <View style={{ flex: 1, padding: SIZES.large }}>
         {/* Display the selected electrician's data here */}
         <View>
@@ -29,7 +39,59 @@ const electricianData = route.params.electricianData;
             <Text style={styles.textBlockCard1} ></Text>
           </View>
         </View>
+
+        <View>
+          <TextInput
+            style={styles.inputLarger}
+            placeholder="Enter your electric issue *"
+            // value={electricIssue}
+            // onChangeText={text => setElectricIssue(text)}
+        />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your name *"
+          //   value={uName}
+          //   onChangeText={text => setName(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter contact no *"
+            // value={contactNumber}
+            // onChangeText={text => setContactNumber(text)}
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter address *"
+            // value={address}
+            // onChangeText={text => setAddress(text)}
+          />
+          <TouchableOpacity
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 170,
+              height: 40, // Adjust the height as needed
+              backgroundColor: "#096FCC",
+              borderRadius: SIZES.small,
+              marginLeft: 90,
+            }}
+            onPress={handleConfirmBooking}
+          >
+            <Text
+              style={{
+                color: "white",
+                fontSize: SIZES.medium,
+                textAlign: "center",
+              }}
+            >
+              Confirm Booking
+            </Text>
+          </TouchableOpacity>
+       </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -39,7 +101,8 @@ export default ConfirmBooking
 const styles = StyleSheet.create({
   imageAndContainer0: {
     flexDirection: "row", // Arrange the image and container0 horizontally
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    marginBottom: 60
   },
   personImage: {
     width: 180, // Set a fixed width
@@ -61,7 +124,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fff",
     marginLeft: 10,
     elevation: 3,
     borderWidth: 0.4,
@@ -97,5 +160,25 @@ const styles = StyleSheet.create({
   },
   textBlockCard1: {
     fontSize: SIZES.medium,
-  }
+  },
+  input: {
+    fontSize: SIZES.medium,
+    borderWidth: 0.4,
+    borderColor: '#096FCC',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    borderRadius: 15,
+    backgroundColor: "#DDECFA"
+  },
+    inputLarger: {
+    fontSize: 16,
+    borderWidth: 0.4,
+    borderColor: '#096FCC',
+    borderRadius: 15,
+    paddingVertical: 25, // Adjust the height as needed
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    backgroundColor: "#DDECFA"
+  },
 });

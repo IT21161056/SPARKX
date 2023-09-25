@@ -72,7 +72,7 @@ export default function ElectricianCard( { data }) {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#fff",
-            borderWidth: 1,
+            borderWidth: 0.4,
             borderRadius: 15,
             borderColor: "#000", 
           }}
