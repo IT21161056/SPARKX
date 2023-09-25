@@ -20,7 +20,6 @@ const style = StyleSheet.create({
   },
   textBlockCard: {
     fontSize: 13,
-    fontStyle: "normal",
     marginBottom: 10,
   }
 });
