@@ -13,6 +13,7 @@ import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
 import ConfirmBooking from "../screens/ConfirmBooking";
 import ViewFeedbacks from "../screens/ViewFeedbacks";
 import AddFeedback from "../screens/AddFeedback";
+import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -21,8 +22,18 @@ export default function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
-        headerShadowVisible: false,
+        // headerShown: false,
+        // headerShadowVisible: false,
+        // headerTitleContainerStyle: {
+        //   backgroundColor: "#16324F",
+        //   width: "100%",
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        // },
+        // headerTintColor: "#fff",
+
+        headerTitleAlign: "center",
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
@@ -33,14 +44,14 @@ export default function Tabs() {
           elevation: 0,
           backgroundColor: "#fff",
           borderRadius: 15,
-          height: 50,
+          height: 70,
           ...styles.shadow,
         },
       }}
     >
       <Tab.Screen
-        name="Items"
-        component={HomeScreen}
+        name="Store"
+        tabBarLabelPosition="center"
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -56,7 +67,17 @@ export default function Tabs() {
             </View>
           ),
         }}
-      />
+      >
+        {() => (
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Items" component={HomeScreen} />
+            <Stack.Screen
+              name="ItemMoreInfoScreen"
+              component={ItemMoreInfoScreen}
+            />
+          </Stack.Navigator>
+        )}
+      </Tab.Screen>
 
       <Tab.Screen
         name="Tips"
@@ -96,7 +117,7 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Outage" component={OutageScreen} />
           </Stack.Navigator>
@@ -122,9 +143,12 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Electricians" component={Electricians} />
-            <Stack.Screen name="ElectricianMoreInfo" component={ElectricianMoreInfo} />
+            <Stack.Screen
+              name="ElectricianMoreInfo"
+              component={ElectricianMoreInfo}
+            />
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
             <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
             <Stack.Screen name="AddFeedback" component={AddFeedback} />
