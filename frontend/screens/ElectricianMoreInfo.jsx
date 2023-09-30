@@ -8,27 +8,25 @@ import { View,
          Text,
          TouchableOpacity } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
-import * as Font from 'expo-font';
-
 
 export default function ElectricianMoreInfo( { route }) {
 
   // Retrieve the electrician data passed from ElectricianCard
   const electricianData = route.params.electricianData;
 
-  useEffect(() => {
-  async function loadCustomFont() {
-    try {
-      await Font.loadAsync({
-        "RedHatDisplay-SemiBold": require("../assets/fonts/RedHatDisplay-SemiBold.ttf"),
-      });
-      console.log("Font loaded successfully");
-    } catch (error) {
-      console.log("Font loading error:", error);
-    }
-  }
-  loadCustomFont();
-  }, []);
+  // useEffect(() => {
+  // async function loadCustomFont() {
+  //   try {
+  //     await Font.loadAsync({
+  //       "RedHatDisplay-SemiBold": require("../assets/fonts/RedHatDisplay-SemiBold.ttf"),
+  //     });
+  //     console.log("Font loaded successfully");
+  //   } catch (error) {
+  //     console.log("Font loading error:", error);
+  //   }
+  // }
+  // loadCustomFont();
+  // }, []);
 
   const navigation = useNavigation();
   const navigateToBooking = () => {
@@ -53,7 +51,8 @@ return (
             style={styles.personImage}
           />
           <View style={styles.container0}>
-            <Text style={styles.textBlockCard1} ></Text>
+            <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
+            <Text style={styles.textBlockCard1} >{electricianData.experience}</Text>
           </View>
         </View>
         <View style={styles.container1}>
@@ -64,10 +63,15 @@ return (
         </View>
 
         <View style={styles.container2}>
-          <Text style={styles.textBlockCard3} >Availability</Text>
-          <Text style={styles.textBlockCard3} ></Text>
-          <Text style={styles.textBlockCard3} >Qualification/ Experience</Text>
-          <Text style={styles.textBlockCard3} ></Text>
+          <Text style={styles.topic1} >Availability</Text>
+          <Text style={styles.textBlockCard3} >{electricianData.availability}</Text>
+        <View>
+          
+        </View>
+          <Text style={styles.topic2} >Qualification/ Experience</Text>
+          <Text style={styles.textBlockCard3} >
+            {electricianData.qualification1} {electricianData.qualification1} 
+          </Text>
         </View>
         <TouchableOpacity
         onPress={navigateToBooking}>
@@ -76,7 +80,7 @@ return (
                 borderRadius: SIZES.small,
                 color: "white",
                 fontSize: 16,
-                fontFamily: "RedHatDisplay-SemiBold",
+                // fontFamily: "RedHatDisplay-SemiBold",
                 width: 170,
                 textAlign: "center",
                 padding: 5,
@@ -95,7 +99,7 @@ return (
                 borderRadius: SIZES.small,
                 color: "white",
                 fontSize: 16,
-                fontFamily: "RedHatDisplay-SemiBold",
+                // fontFamily: "RedHatDisplay-SemiBold",
                 width: 170,
                 textAlign: "center",
                 padding: 5,
@@ -190,18 +194,36 @@ const styles = StyleSheet.create({
   textBlockCard0: {
     fontSize: SIZES.large,
     marginLeft: 5,
-    fontFamily: "RedHatDisplay-SemiBold"
+    // fontFamily: "RedHatDisplay-SemiBold"
   },
   textBlockCard1: {
     fontSize: SIZES.medium,
+    fontWeight: "500",
+    marginTop: 15
   },
   textBlockCard2: {
     fontSize: SIZES.medium,
-    fontFamily: "RedHatDisplay-SemiBold"
+    fontWeight: "400",
+    // fontFamily: "RedHatDisplay-SemiBold"
   },
   textBlockCard3: {
     fontSize: SIZES.medium,
-    marginBottom: SIZES.small,
-    fontFamily: "RedHatDisplay-SemiBold"
+    marginTop: 10,
+    marginBottom: 15,
+    textAlign: "left",
+    width: '85%',
+    // fontFamily: "RedHatDisplay-SemiBold"
   },
+  topic1: {
+    fontSize: SIZES.medium,
+    fontWeight: "500",
+    textAlign: "left",
+    width: '90%',
+  },
+  topic2: {
+    fontSize: SIZES.medium,
+    fontWeight: "500",
+    textAlign: "left",
+    width: '90%',
+  }
 });

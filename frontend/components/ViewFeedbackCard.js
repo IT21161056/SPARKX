@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
@@ -11,6 +11,22 @@ export default function recomendedItemCard( {data} ) {
   const navigateToAddFeedback = () => {
     navigation.navigate("AddFeedback", { feedbacks: data});
   }
+
+    // useEffect(() => {
+    // async function loadCustomFont() {
+    //   try {
+    //     await Font.loadAsync({
+    //       "RedHatDisplay-Medium": require("../assets/fonts/RedHatDisplay-Medium.ttf"),
+    //       "RedHatDisplay-SemiBold": require("../assets/fonts/RedHatDisplay-SemiBold.ttf"),
+
+    //     });
+    //     console.log("Font loaded successfully");
+    //   } catch (error) {
+    //     console.log("Font loading error:", error);
+    //   }
+    // }
+    // loadCustomFont();
+    // }, []);
 
   return (
   <View style={styles.profileContainer}>
@@ -36,7 +52,12 @@ export default function recomendedItemCard( {data} ) {
           maxHeight:"auto"
         }}
       >
-        <Text style={{ color: "black", fontWeight: "500" }}>{data.text}</Text>
+        <Text style={{ color: "black",
+                       fontSize: 15, 
+                       fontWeight: "400", 
+                      //  fontFamily: "RedHatDisplay-Medium" 
+                     }}>
+        {data.text}</Text>
       </View>
     </View>
   </View>
@@ -51,15 +72,13 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   profileImageContainer: {
-    width: 50,
-    height: 50,
-    backgroundColor: "#fff",
-    borderRadius: 40,
+    borderRadius: 50,
+    borderWidth: 1
   },
   profileImage: {
     width: 50,
     height: 50,
-    borderRadius: 40,
+    borderRadius: 50,
   },
   feedbackContainer: {
     flex: 1,

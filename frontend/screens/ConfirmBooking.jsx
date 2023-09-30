@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { View, 
          SafeAreaView, 
@@ -7,19 +7,33 @@ import { View,
          Text,
          TouchableOpacity,
          TextInput,
-         Button, 
          ScrollView} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
+import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ConfirmBooking = ( {route} ) => {
 
   const navigation = useNavigation();
+  const electricianData = route.params?.electricianData;
 
-    const handleConfirmBooking = () => {
-      navigation.navigate('ElectricianMoreInfo', {electricianData});
+   const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
-  const electricianData = route.params?.electricianData;
+  const handleConfirmBooking = () => {
+    // Show the success modal
+    toggleModal();
+
+    // Automatically close the modal after 3 seconds (adjust as needed)
+    setTimeout(() => {
+      toggleModal();
+      // Navigate to the next screen
+      navigation.navigate('ElectricianMoreInfo', { electricianData });
+    }, 4000); // 3000 milliseconds (3 seconds) delay
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -36,7 +50,8 @@ const ConfirmBooking = ( {route} ) => {
             style={styles.personImage}
           />
           <View style={styles.container0}>
-            <Text style={styles.textBlockCard1} ></Text>
+            <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
+            <Text style={styles.textBlockCard1} >{electricianData.experience}</Text>
           </View>
         </View>
 
@@ -44,28 +59,20 @@ const ConfirmBooking = ( {route} ) => {
           <TextInput
             style={styles.inputLarger}
             placeholder="Enter your electric issue *"
-            // value={electricIssue}
-            // onChangeText={text => setElectricIssue(text)}
         />
 
           <TextInput
             style={styles.input}
             placeholder="Enter your name *"
-          //   value={uName}
-          //   onChangeText={text => setName(text)}
           />
           <TextInput
             style={styles.input}
             placeholder="Enter contact no *"
-            // value={contactNumber}
-            // onChangeText={text => setContactNumber(text)}
             keyboardType="phone-pad"
           />
           <TextInput
             style={styles.input}
             placeholder="Enter address *"
-            // value={address}
-            // onChangeText={text => setAddress(text)}
           />
           <TouchableOpacity
             style={{
@@ -92,11 +99,26 @@ const ConfirmBooking = ( {route} ) => {
        </View>
       </View>
       </ScrollView>
+      {/* Success Modal */}
+      <Modal isVisible={isModalVisible}>
+        <View style={styles.modalContent}>
+          <View style={styles.iconContainer}>
+            <Icon name="check-circle" size={60} color="#096FCC" />
+          </View>
+          <Text style={styles.modalTitle}>Booking Confirmed!</Text>
+          <Text style={styles.modalDescription}>
+            Your booking with {electricianData.name} has been confirmed successfully.
+          </Text>
+          <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+    </Modal>
     </SafeAreaView>
   )
 }
 
-export default ConfirmBooking
+export default ConfirmBooking;
 
 const styles = StyleSheet.create({
   imageAndContainer0: {
@@ -160,6 +182,8 @@ const styles = StyleSheet.create({
   },
   textBlockCard1: {
     fontSize: SIZES.medium,
+    fontWeight: "500",
+    marginTop: 15
   },
   input: {
     fontSize: SIZES.medium,
@@ -169,7 +193,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
     borderRadius: 15,
-    backgroundColor: "#DDECFA"
+    backgroundColor: "#fff",
+    elevation: 10,
   },
     inputLarger: {
     fontSize: 16,
@@ -179,6 +204,50 @@ const styles = StyleSheet.create({
     paddingVertical: 25, // Adjust the height as needed
     paddingHorizontal: 10,
     marginBottom: 10,
-    backgroundColor: "#DDECFA"
+    backgroundColor: "#fff",
+    elevation: 10
+  },
+  // Modal styles
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  modalText: {
+    fontSize: SIZES.large,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  iconContainer: {
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: '#096FCC',
+    paddingVertical: 6,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+    modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#096FCC', // Customize title color
+    textAlign: 'center', // Center-align the text
+  },
+  modalDescription: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center', // Center-align the text
+    color: '#333', // Customize description color
   },
 });

@@ -42,12 +42,12 @@ const ViewFeedbacks = ( { route } ) => {
 
     const navigation = useNavigation();
     const navigateToAddFeedback = () => {
-    navigation.navigate("AddFeedback", { electricianData: data});
+    navigation.navigate("AddFeedback", { electricianData});
   }
 
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <ScrollView>
+      {/* <ScrollView> */}
       <View style={{ flex: 1}}>
         <View style={styles.container}>
             <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
@@ -59,7 +59,7 @@ return (
                 style={styles.personImage}
             />
             <View style={styles.container0}>
-                <Text style={styles.textBlockCard1} ></Text>
+                <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
             </View>
         </View>
         <View style={styles.flatListContainer}>
@@ -70,18 +70,19 @@ return (
                 contentContainerStyle={styles.flatListContainer}
                 showsVerticalScrollIndicator={false}
             />
+            
         </View>
 
         <View style={styles.addFeedbackContainer}>
             <TouchableOpacity
                 onPress={navigateToAddFeedback}>
                 <Text style={styles.addFeedbackButton}>
-                  More Info
+                  Add Feedback
                 </Text>
             </TouchableOpacity>
         </View>
       </View>
-      </ScrollView>
+      {/* </ScrollView> */}
     </SafeAreaView>
   )
 }
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   container0: {
     flex: 1,
     width: "50%",
-    height: 100,
+    height: 70,
     flexDirection: "column",
     borderRadius: SIZES.medium,
     alignItems: "center",
@@ -117,12 +118,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    backgroundColor: "#fff",
+    backgroundColor: "#122B5C",
     marginLeft: 10,
     elevation: 3,
     borderWidth: 0.4,
     borderColor: "#096FCC",
-    marginRight: 10
+    marginRight: 10,
   },
   imageContainer: {
     width: 200,
@@ -133,16 +134,19 @@ const styles = StyleSheet.create({
   },
   textBlockCard0: {
     fontSize: SIZES.large,
-    marginLeft: 5
+    marginLeft: 5,
   },
    textBlockCard1: {
     fontSize: SIZES.large,
-    marginLeft: 5
+    marginLeft: 5,
+    marginTop: 20,
+    color: "#fff"
   },
   addFeedbackButton: {
     borderRadius: SIZES.small,
     color: 'white',
     fontSize: 18,
+    // fontFamily: "RedHatDisplay-SemiBold",
     textAlign: 'center',
     alignItems: "center",
     padding: 5,
