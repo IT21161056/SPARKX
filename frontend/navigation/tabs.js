@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CartScreen from "../screens/Cart";
 import HomeScreen from "../screens/Home";
 import MapScreen from "../screens/Map";
@@ -14,15 +14,18 @@ import ConfirmBooking from "../screens/ConfirmBooking";
 import ViewFeedbacks from "../screens/ViewFeedbacks";
 import AddFeedback from "../screens/AddFeedback";
 import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
+import left_arrow from "../assets/left_arrow.png";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function Tabs() {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
-        // headerShown: false,
+        headerShown: false,
         // headerShadowVisible: false,
         // headerTitleContainerStyle: {
         //   backgroundColor: "#16324F",
@@ -38,13 +41,13 @@ export default function Tabs() {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: "absolute",
-          bottom: 20,
-          left: 20,
-          right: 20,
+          // bottom: 20,
+          // left: 20,
+          // right: 20,
           elevation: 0,
           backgroundColor: "#fff",
-          borderRadius: 15,
-          height: 70,
+          // borderRadius: 15,
+          height: 50,
           ...styles.shadow,
         },
       }}
@@ -69,11 +72,19 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Items" component={HomeScreen} />
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Items"
+              options={{ headerTitle: "Store", headerTitleAlign: "center" }}
+              component={HomeScreen}
+            />
             <Stack.Screen
               name="ItemMoreInfoScreen"
               component={ItemMoreInfoScreen}
+              options={{
+                headerTitle: "Item Info",
+                headerTitleAlign: "center",
+              }}
             />
           </Stack.Navigator>
         )}
@@ -117,9 +128,22 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Map" component={MapScreen} />
-            <Stack.Screen name="Outage" component={OutageScreen} />
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Map"
+              component={MapScreen}
+              options={{
+                headerTitle: "Map",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen
+              name="Outage"
+              component={OutageScreen}
+              options={{
+                headerTitleAlign: "center",
+              }}
+            />
           </Stack.Navigator>
         )}
       </Tab.Screen>
@@ -143,11 +167,22 @@ export default function Tabs() {
         }}
       >
         {() => (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Electricians" component={Electricians} />
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Electricians"
+              component={Electricians}
+              options={{
+                headerTitle: "Electricians",
+                headerTitleAlign: "center",
+              }}
+            />
             <Stack.Screen
               name="ElectricianMoreInfo"
               component={ElectricianMoreInfo}
+              options={{
+                headerTitle: "Electrician info",
+                headerTitleAlign: "center",
+              }}
             />
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
             <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
