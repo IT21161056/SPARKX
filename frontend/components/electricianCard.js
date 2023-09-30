@@ -19,7 +19,6 @@ const style = StyleSheet.create({
   },
   textBlockCard: {
     fontSize: 13,
-    fontStyle: "normal",
     marginBottom: 10,
   },
 });
@@ -88,6 +87,14 @@ export default function ElectricianCard({ data }) {
         <Text style={style.textBlockCard}>Mobile No: {data.mobileNo}</Text>
         <View
           style={{
+            width: "40%",
+            height: "80%",
+            marginTop: 15,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#fff",
+            borderWidth: 0.4,
             borderRadius: 15,
             overflow: "hidden",
             marginTop: 10,

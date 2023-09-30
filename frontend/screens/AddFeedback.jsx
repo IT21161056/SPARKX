@@ -7,23 +7,26 @@ import { View,
          Text,
          TouchableOpacity,
          TextInput,
+         Button,
+         FlatList, 
          ScrollView} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
+import pr1 from "../assets/pr1.jpg";
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const ConfirmBooking = ( {route} ) => {
+const AddFeedback = ( { route }) => {
 
   const navigation = useNavigation();
   const electricianData = route.params?.electricianData;
 
-   const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const handleConfirmBooking = () => {
+  const hanldeSubmitFeedback = () => {
     // Show the success modal
     toggleModal();
 
@@ -31,83 +34,61 @@ const ConfirmBooking = ( {route} ) => {
     setTimeout(() => {
       toggleModal();
       // Navigate to the next screen
-      navigation.navigate('ElectricianMoreInfo', { electricianData });
+      navigation.navigate("ViewFeedbacks", { electricianData });
+      
     }, 4000); // 3000 milliseconds (3 seconds) delay
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
     <ScrollView>
-      <View style={{ flex: 1, padding: SIZES.large }}>
-        {/* Display the selected electrician's data here */}
-        <View>
-          <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
+      <View style={{ flex: 1, padding: 18 }}>
+        <View style={styles.container}>
+            <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
         </View>
         <View style={styles.imageAndContainer0}>
-          <Image
-            source={electricianData.imageUrl}
-            resizeMode="cover"
-            style={styles.personImage}
-          />
-          <View style={styles.container0}>
-            <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
-            <Text style={styles.textBlockCard1} >{electricianData.experience}</Text>
+            <Image
+                source={electricianData.imageUrl}
+                resizeMode="cover"
+                style={styles.personImage}
+            />
+            <View style={styles.container0}>
+                <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
+            </View>
+        </View>
+
+        <View style={styles.profileContainer}>
+          <View style={styles.profileImageContainer}>
+            <Image source={pr1} resizeMode="center" style={styles.profileImage} />
           </View>
         </View>
 
         <View>
           <TextInput
             style={styles.inputLarger}
-            placeholder="Enter your electric issue *"
+            placeholder="Add feedback"
         />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your name *"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter contact no *"
-            keyboardType="phone-pad"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter address *"
-          />
-          <TouchableOpacity
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              width: 170,
-              height: 40, // Adjust the height as needed
-              backgroundColor: "#096FCC",
-              borderRadius: SIZES.small,
-              marginLeft: 90,
-            }}
-            onPress={handleConfirmBooking}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: SIZES.medium,
-                textAlign: "center",
-              }}
+        </View>
+        
+        <View style={styles.submitFeedbackContainer}>
+            <TouchableOpacity
+                onPress={hanldeSubmitFeedback}
             >
-              Confirm Booking
-            </Text>
-          </TouchableOpacity>
-       </View>
+                <Text style={styles.submitFeedbackButton}>
+                  Submit Feedback
+                </Text>
+            </TouchableOpacity>
+        </View>
       </View>
       </ScrollView>
-      {/* Success Modal */}
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContent}>
           <View style={styles.iconContainer}>
             <Icon name="check-circle" size={60} color="#096FCC" />
           </View>
-          <Text style={styles.modalTitle}>Booking Confirmed!</Text>
+          <Text style={styles.modalTitle}>Feedback Confirmed!</Text>
           <Text style={styles.modalDescription}>
-            Your booking with {electricianData.name} has been confirmed successfully.
+            Your feedback is submitted successfully!
           </Text>
           <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
             <Text style={styles.closeButtonText}>Close</Text>
@@ -115,29 +96,35 @@ const ConfirmBooking = ( {route} ) => {
         </View>
     </Modal>
     </SafeAreaView>
-  )
+  );
 }
 
-export default ConfirmBooking;
+export default AddFeedback;
 
 const styles = StyleSheet.create({
+  container: {
+    
+  },
   imageAndContainer0: {
-    flexDirection: "row", // Arrange the image and container0 horizontally
-    alignItems: "flex-end",
-    marginBottom: 60
+    flexDirection: "cloumn", // Arrange the image and container0 horizontally
+    alignItems: "center",
+    marginBottom: 10,
+    marginLeft: 10
   },
   personImage: {
-    width: 180, // Set a fixed width
-    height: 180, // Set a fixed height
+    width: 200, // Set a fixed width
+    height: 200, // Set a fixed height
     resizeMode: "cover",
     borderRadius: SIZES.medium,
     borderWidth: 0.4, // Add border width
     borderColor: "#096FCC",
+    marginTop: 5,
+    marginBottom: 5
   },
   container0: {
     flex: 1,
     width: "50%",
-    height: 100,
+    height: 65,
     flexDirection: "column",
     borderRadius: SIZES.medium,
     alignItems: "center",
@@ -146,25 +133,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    backgroundColor: "#fff",
-    marginLeft: 10,
-    elevation: 3,
-    borderWidth: 0.4,
-    borderColor: "#096FCC",
-  },
-  container1: {
-    width: "100%",
-    height: 100,
-    flexDirection: "column",
-    borderRadius: SIZES.medium,
-    alignItems: "center",
-    padding: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    backgroundColor: COLORS.white,
-    marginTop: 10,
+    backgroundColor: "#122B5C",
     elevation: 3,
     borderWidth: 0.4,
     borderColor: "#096FCC",
@@ -178,36 +147,55 @@ const styles = StyleSheet.create({
   },
   textBlockCard0: {
     fontSize: SIZES.large,
-    marginLeft: 5
   },
-  textBlockCard1: {
-    fontSize: SIZES.medium,
-    fontWeight: "500",
-    marginTop: 15
+   textBlockCard1: {
+    fontSize: SIZES.large,
+    marginTop: 15,
+    color: "#fff"
   },
-  input: {
-    fontSize: SIZES.medium,
-    borderWidth: 0.4,
-    borderColor: '#096FCC',
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    borderRadius: 15,
-    backgroundColor: "#fff",
-    elevation: 10,
+  submitFeedbackButton: {
+    borderRadius: SIZES.small,
+    color: 'white',
+    fontSize: 18,
+    // fontFamily: "RedHatDisplay-SemiBold",
+    textAlign: 'center',
+    alignItems: "center",
+    padding: 5,
+    backgroundColor: '#096FCC',
+    width: "50%",
+    marginLeft: "25%",
+    marginTop: 10,
+    lineHeight: 30,
   },
-    inputLarger: {
+  profileContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+    marginLeft: 30
+  },
+  profileImageContainer: {
+    borderRadius: 50,
+    borderWidth: 1
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+  },
+  inputLarger: {
     fontSize: 16,
     borderWidth: 0.4,
     borderColor: '#096FCC',
     borderRadius: 15,
+    marginTop: 20,
     paddingVertical: 25, // Adjust the height as needed
     paddingHorizontal: 10,
     marginBottom: 10,
     backgroundColor: "#fff",
-    elevation: 10
+    elevation: 10,
+    height: 120
   },
-  // Modal styles
+    // Modal styles
   modalContent: {
     backgroundColor: 'white',
     padding: 22,
