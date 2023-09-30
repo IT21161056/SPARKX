@@ -11,6 +11,8 @@ import TipsScreen from "../screens/Tips";
 import Electricians from "../screens/Electricians";
 import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
 import ConfirmBooking from "../screens/ConfirmBooking";
+import ViewFeedbacks from "../screens/ViewFeedbacks";
+import AddFeedback from "../screens/AddFeedback";
 import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
 import left_arrow from "../assets/left_arrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -183,6 +185,8 @@ export default function Tabs() {
               }}
             />
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
+            <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
+            <Stack.Screen name="AddFeedback" component={AddFeedback} />
           </Stack.Navigator>
         )}
       </Tab.Screen>
