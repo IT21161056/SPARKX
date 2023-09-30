@@ -1,19 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import { SIZES, COLORS } from "../constants/theme";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import LEDBulb from "../assets/LEDBulb.jpg";
+import { SIZES } from "../constants/theme";
 
-export default function ItemCard() {
+export default function ItemCard({ data }) {
+  const navigation = useNavigation();
+
+  const navigateToMoreInfo = () => {
+    navigation.navigate("ItemMoreInfoScreen", { itemData: data });
+  };
   return (
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5} onPress={navigateToMoreInfo}>
       <View
         style={{
           width: 150,
@@ -41,9 +39,13 @@ export default function ItemCard() {
             backgroundColor: "#fff",
           }}
         >
-          <Image source={LEDBulb} resizeMode="center" style={style.logoImage} />
+          <Image
+            source={data.image}
+            resizeMode="center"
+            style={style.logoImage}
+          />
         </View>
-        <Text style={{ color: "black", fontWeight: 500 }}>Item card</Text>
+        <Text style={{ color: "black", fontWeight: 500 }}>{data.itemName}</Text>
       </View>
     </TouchableOpacity>
   );

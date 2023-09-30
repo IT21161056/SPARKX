@@ -14,9 +14,51 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-
+import bulbImage from "../assets/LEDBulb.jpg";
 const data = [1, 2, 3, 4, 5, 6];
 const jobTypes = ["All", "Latest", "Popular"];
+const items = [
+  {
+    id: 1,
+    image: bulbImage,
+    itemName: "LED Bulb",
+    wattage: [15, 30, 40, 50],
+    price: 2000,
+    holderType: "pin-type / skrew-type",
+  },
+  {
+    id: 2,
+    image: bulbImage,
+    itemName: "LED Bulb",
+    wattage: [15, 30, 40, 50],
+    price: 2000,
+    holderType: "pin-type / skrew-type",
+  },
+  {
+    id: 3,
+    image: bulbImage,
+    itemName: "LED Bulb",
+    wattage: [15, 30, 40, 50],
+    price: 2000,
+    holderType: "pin-type / skrew-type",
+  },
+  {
+    id: 4,
+    image: bulbImage,
+    itemName: "LED Bulb",
+    wattage: [15, 30, 40, 50],
+    price: 2000,
+    holderType: "pin-type / skrew-type",
+  },
+  {
+    id: 5,
+    image: bulbImage,
+    itemName: "LED Bulb",
+    wattage: [15, 30, 40, 50],
+    price: 2000,
+    holderType: "pin-type / skrew-type",
+  },
+];
 
 export default function Home() {
   const [activeItemType, setActiveItemType] = useState("All");
@@ -85,9 +127,9 @@ export default function Home() {
           </View>
           <View>
             <FlatList
-              data={data}
-              renderItem={({ item }) => <ItemCard />}
-              keyExtractor={(item) => item}
+              data={items}
+              renderItem={({ item }) => <ItemCard data={item} />}
+              keyExtractor={(item) => item.id}
               contentContainerStyle={{ columnGap: SIZES.small }}
               horizontal
               showsHorizontalScrollIndicator={false}
