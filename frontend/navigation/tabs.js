@@ -8,6 +8,7 @@ import MapScreen from "../screens/Map";
 import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
+import ReportOutage from "../screens/ReportOutage";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -94,6 +95,7 @@ export default function Tabs() {
           <Stack.Navigator screenOptions={{headerShown:'false'}}>
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Outage" component={OutageScreen} />
+            <Stack.Screen name="Dev" component={ReportOutage}/>
           </Stack.Navigator>
         )}
       </Tab.Screen>
