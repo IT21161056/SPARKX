@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { SIZES, COLORS } from "../constants/theme";
 import MyButton from "../components/customeBtn";
 import searchIcon from "../assets/search.png";
-import ItemCard from "../components/itemCard";
-import RecomendedItemCard from "../components/recomendedItemCard";
+import ElectricianCard from "../components/electricianCard";
 import {
   View,
   Text,
@@ -14,75 +13,84 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import bulbImage from "../assets/LEDBulb.jpg";
-const data = [1, 2, 3, 4, 5, 6];
-const jobTypes = ["All", "Latest", "Popular"];
-const items = [
+
+const electriciansData = [
   {
     id: 1,
-    image: bulbImage,
-    itemName: "LED Bulb",
-    wattage: [15, 30, 40, 50],
-    price: 2000,
-    holderType: "pin-type / skrew-type",
+    name: "Ashan Perera",
+    age: 34,
+    location: "Hoamagama",
+    mobileNo : "073637100",
+    imageUrl: require('../assets/e1.png'),
+    category: "Electrician",
+    experience: "5 Y experience",
+    availability: "yes",
+    qualification1: "Electrician Certificate Program",
+    qualification2: "Electrical Safety Certificate"
   },
   {
     id: 2,
-    image: bulbImage,
-    itemName: "LED Bulb",
-    wattage: [15, 30, 40, 50],
-    price: 2000,
-    holderType: "pin-type / skrew-type",
+    name: "Deshan Fernando",
+    age: 28,
+    location: "Kottawa",
+    mobileNo : "073637100",
+    imageUrl: require('../assets/e9.jpg'),
   },
   {
     id: 3,
-    image: bulbImage,
-    itemName: "LED Bulb",
-    wattage: [15, 30, 40, 50],
-    price: 2000,
-    holderType: "pin-type / skrew-type",
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    mobileNo : "073637100",
+    imageUrl: require('../assets/e6.jpg'),
   },
+
   {
     id: 4,
-    image: bulbImage,
-    itemName: "LED Bulb",
-    wattage: [15, 30, 40, 50],
-    price: 2000,
-    holderType: "pin-type / skrew-type",
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    mobileNo : "073637100",
+    imageUrl: require('../assets/e6.jpg'),
   },
+
   {
     id: 5,
-    image: bulbImage,
-    itemName: "LED Bulb",
-    wattage: [15, 30, 40, 50],
-    price: 2000,
-    holderType: "pin-type / skrew-type",
+    name: "Nimal Perera",
+    age: 35,
+    location: "Matara",
+    mobileNo: "073637100",
+    imageUrl: require('../assets/e6.jpg'),
   },
+
+  {
+    id: 6,
+    name: "Hashan Perera",
+    age: 35,
+    location: "Maharagama",
+    mobileNo: "073638100",
+    imageUrl: require('../assets/e6.jpg'),
+  },
+  
 ];
 
-export default function Home() {
+const data = [1, 2, 3, 4, 5, 6];
+const jobTypes = ["All", "Electrcians", "House Wiring", "A/C Repair"];
+
+export default function Electrcians() {
   const [activeItemType, setActiveItemType] = useState("All");
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+       {/* <ScrollView showsVerticalScrollIndicator={false}> */}
         <View style={{ flex: 1, padding: SIZES.large }}>
-          <Text
-            style={{
-              fontSize: SIZES.xLarge,
 
-              fontWeight: 600,
-            }}
-          >
-            Items
-          </Text>
           <View
             style={{
               marginTop: SIZES.large,
               flexDirection: "row",
               display: "flex",
               alignItems: "center",
-              // gap: "10px",
             }}
           >
             <TextInput
@@ -91,11 +99,8 @@ export default function Home() {
                 fontSize: SIZES.medium,
                 color: COLORS.gray,
                 backgroundColor: "#fff",
-
                 borderStyle: "solid",
-
-                borderWidth: 2,
-                borderColor: "#3E92CC",
+                borderWidth: 1,
                 borderRadius: SIZES.small,
                 padding: SIZES.small,
                 height: 48,
@@ -104,7 +109,7 @@ export default function Home() {
             />
             <MyButton iconUrl={searchIcon} dimension="80%" />
           </View>
-          <View style={style.tabsContainer}>
+          <View style={style.tabsContainer} >
             <FlatList
               data={jobTypes}
               renderItem={({ item }) => (
@@ -112,7 +117,6 @@ export default function Home() {
                   style={style.tab(activeItemType, item)}
                   onPress={() => {
                     setActiveItemType(item);
-                    // router.push(`/search/${item}`);
                   }}
                 >
                   <Text style={style.tabText(activeItemType, item)}>
@@ -123,49 +127,25 @@ export default function Home() {
               keyExtractor={(item) => item}
               contentContainerStyle={{ columnGap: SIZES.small }}
               horizontal
+              showsHorizontalScrollIndicator={false}
             />
           </View>
           <View>
             <FlatList
-              data={items}
-              renderItem={({ item }) => <ItemCard data={item} />}
-              keyExtractor={(item) => item.id}
+              data={ electriciansData }
+              renderItem={({ item }) => <ElectricianCard data={ item }/>}
+              keyExtractor={(item) => item.id.toString()}
               contentContainerStyle={{ columnGap: SIZES.small }}
-              horizontal
-              showsHorizontalScrollIndicator={false}
+              vertical
+              showsVerticalScrollIndicator={false}
               style={{
                 paddingTop: SIZES.medium,
                 paddingBottom: SIZES.medium,
-                // backgroundColor: "#456",
-              }}
-            />
-          </View>
-          <Text
-            style={{
-              fontSize: SIZES.xLarge,
-              marginTop: SIZES.medium,
-              fontWeight: 600,
-            }}
-          >
-            Recomended Items
-          </Text>
-          <View>
-            <FlatList
-              data={data}
-              renderItem={({ item }) => <RecomendedItemCard />}
-              keyExtractor={(item) => item}
-              contentContainerStyle={{ columnGap: SIZES.small }}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={{
-                paddingTop: SIZES.medium,
-                paddingBottom: SIZES.medium,
-                // backgroundColor: "#456",
               }}
             />
           </View>
         </View>
-      </ScrollView>
+        {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
