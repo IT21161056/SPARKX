@@ -108,7 +108,9 @@ const ItemMoreInfo = ({ route }) => {
           <Text style={style.itemDetails}>Rs {itemData.price}</Text>
         </View>
         <TouchableOpacity style={style.addToCartBtn}>
-          <Text style={{ color: "#fff", fontSize: 25 }}>Add to cart</Text>
+          <Text style={{ color: "#fff", fontSize: 20, fontWeight: 500 }}>
+            Add to cart
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
