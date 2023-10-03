@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import bulbImage from "../assets/LEDBulb.jpg";
@@ -106,6 +107,11 @@ const ItemMoreInfo = ({ route }) => {
           <Text style={style.itemDescriptionTitle}>Price</Text>
           <Text style={style.itemDetails}>Rs {itemData.price}</Text>
         </View>
+        <TouchableOpacity style={style.addToCartBtn}>
+          <Text style={{ color: "#fff", fontSize: 20, fontWeight: 500 }}>
+            Add to cart
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -134,5 +140,15 @@ const style = StyleSheet.create({
     color: "#fff",
     fontWeight: "400",
     marginTop: 5,
+  },
+  addToCartBtn: {
+    backgroundColor: "#2A628F",
+    display: "flex",
+    alignItems: "center",
+    padding: 10,
+    margin: 20,
+    marginTop: 0,
+    width: "86%",
+    borderRadius: 10,
   },
 });
