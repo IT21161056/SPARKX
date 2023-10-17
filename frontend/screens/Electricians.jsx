@@ -22,6 +22,11 @@ const electriciansData = [
     location: "Hoamagama",
     mobileNo : "073637100",
     imageUrl: require('../assets/e1.png'),
+    category: "Electrician",
+    experience: "5 Y experience",
+    availability: "yes",
+    qualification1: "Electrician Certificate Program",
+    qualification2: "Electrical Safety Certificate"
   },
   {
     id: 2,
@@ -77,6 +82,7 @@ export default function Electrcians() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.large }}>
 
           <View
@@ -106,7 +112,6 @@ export default function Electrcians() {
           <View style={style.tabsContainer} >
             <FlatList
               data={jobTypes}
-              showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={style.tab(activeItemType, item)}
@@ -122,6 +127,7 @@ export default function Electrcians() {
               keyExtractor={(item) => item}
               contentContainerStyle={{ columnGap: SIZES.small }}
               horizontal
+              showsHorizontalScrollIndicator={false}
             />
           </View>
           <View>
@@ -131,7 +137,7 @@ export default function Electrcians() {
               keyExtractor={(item) => item.id.toString()}
               contentContainerStyle={{ columnGap: SIZES.small }}
               vertical
-              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
               style={{
                 paddingTop: SIZES.medium,
                 paddingBottom: SIZES.medium,
@@ -139,6 +145,7 @@ export default function Electrcians() {
             />
           </View>
         </View>
+        </ScrollView>
     </SafeAreaView>
   );
 }
