@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   View,
   Text,
@@ -14,32 +14,38 @@ import { SIZES } from "../constants/theme";
 import signupImg from "../assets/signup_from_img.png";
 
 export default function RegisterScreen() {
-  <Button onPress={() => navigation.navigate("Login")} title="Login"></Button>;
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
+
   return (
     <View style={style.container}>
+      {isLoading && (
+        <View style={[style.loadingSpinner, style.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
       <View style={style.imageContainer}>
         <Image source={signupImg} resizeMode="center" style={style.image} />
       </View>
       <View style={style.titleContainer}>
-        <Text style={style.title}> Login into your account </Text>
+        <Text style={style.title}> Create account </Text>
       </View>
       <View style={style.form}>
         <View style={style.formItem}>
           <Icon name="person-sharp" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Username" />
         </View>
         <View style={style.formItem}>
           <Icon name="call" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Phone" />
         </View>
         <View style={style.formItem}>
           <Icon name="mail" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Email" />
         </View>
         <View style={style.formItem}>
           <Icon name="lock-closed" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Password" />
         </View>
         <TouchableOpacity
           style={{
@@ -102,7 +108,7 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
   },
-  icon: { fontSize: 25 },
+  icon: { fontSize: 25, color: "#16324fba" },
   input: {
     backgroundColor: "transparent",
     flex: 1,
@@ -111,7 +117,7 @@ const style = StyleSheet.create({
   },
   loginText: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "600",
     color: "white",
   },
@@ -121,5 +127,20 @@ const style = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  },
+  loadingSpinner: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#ffffffca",
+    flex: 1,
+    justifyContent: "center",
+    zIndex: 5,
+  },
+
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
   },
 });
