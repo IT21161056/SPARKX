@@ -43,11 +43,11 @@ export default function LoginScreen() {
       <View style={style.form}>
         <View style={style.formItem}>
           <Icon name="mail" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Email" />
         </View>
         <View style={style.formItem}>
           <Icon name="lock-closed" style={style.icon} />
-          <TextInput style={style.input} />
+          <TextInput style={style.input} placeholder="Password" />
         </View>
         <TouchableOpacity
           style={{
@@ -111,7 +111,7 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
   },
-  icon: { fontSize: 25 },
+  icon: { fontSize: 25, color: "#16324fba" },
   input: {
     backgroundColor: "transparent",
     flex: 1,
@@ -120,7 +120,7 @@ const style = StyleSheet.create({
   },
   loginText: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "600",
     color: "white",
   },
