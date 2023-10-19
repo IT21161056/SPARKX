@@ -40,11 +40,10 @@ export default function LoginScreen() {
         >
           <Text style={style.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <Text>Don’t have an account? sign up</Text>
+        <Text onPress={() => navigation.navigate("Register")}>
+          Don’t have an account? sign up
+        </Text>
       </View>
-
-      {/* <Button onPress={() => navigation.navigate("Tabs")} title='Tabs'></Button>
-            <Button onPress={() => navigation.navigate("Register")} title='Register'></Button> */}
     </View>
   );
 }
