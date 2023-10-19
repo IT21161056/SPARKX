@@ -30,7 +30,7 @@ export default function OutageScreen({ route }) {
             onPress={() => navigation.goBack()}
             style={{
               position: "absolute",
-              top: 70,
+              top: 25,
               left: 28,
               backgroundColor: "#f0f0f0",
               padding: 8,
