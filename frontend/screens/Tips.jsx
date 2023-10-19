@@ -1,37 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SIZES, COLORS } from "../constants/theme";
 import MyButton from "../components/customeBtn";
 import searchIcon from "../assets/search.png";
-
+import TipCard from "../components/TipCard";
 import {
   View,
   Text,
   SafeAreaView,
-  StyleSheet,
-  FlatList,
   ScrollView,
   TextInput,
+  StyleSheet,
+  FlatList,
   TouchableOpacity,
 } from "react-native";
 
+const tipsData = [
+  {
+    id: 1,
+    tip: "Energy Saving Tip 1",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 2,
+    tip: "Energy Saving Tip 2",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 3,
+    tip: "Energy Saving Tip 3",
+    imageUrl: require("../assets/emoji.png"),
+  },
+
+  {
+    id: 4,
+    tip: "Energy Saving Tip 4",
+    imageUrl: require("../assets/emoji.png"),
+  },
+
+  {
+    id: 5,
+    tip: "Energy Saving Tip 5",
+    imageUrl: require("../assets/emoji.png"),
+  },
+
+  {
+    id: 6,
+    tip: "Energy Saving Tip 6",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 7,
+    tip: "Energy Saving Tip 7",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 8,
+    tip: "Energy Saving Tip 8",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 9,
+    tip: "Energy Saving Tip 9",
+    imageUrl: require("../assets/emoji.png"),
+  },
+  {
+    id: 10,
+    tip: "Energy Saving Tip 10",
+    imageUrl: require("../assets/emoji.png"),
+  },
+];
+
+const data = [1, 2];
 const jobTypes = ["All", "Experience"];
 
 export default function Tips() {
   const [activeItemType, setActiveItemType] = useState("All");
-  const [showTips, setShowTips] = useState(true); // State variable to control tips visibility
-
-  const [tips, setTips] = useState([
-    { name: "Energy Saving Tip 01", key: "1" },
-    { name: "Energy Saving Tip 02", key: "2" },
-    { name: "Energy Saving Tip 03", key: "3" },
-    { name: "Energy Saving Tip 04", key: "4" },
-    { name: "Energy Saving Tip 05", key: "5" },
-    { name: "Energy Saving Tip 06", key: "6" },
-    { name: "Energy Saving Tip 07", key: "7" },
-    { name: "Energy Saving Tip 08", key: "8" },
-    { name: "Energy Saving Tip 09", key: "9" },
-    { name: "Energy Saving Tip 10", key: "10" },
-  ]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -52,24 +95,15 @@ export default function Tips() {
                 color: COLORS.gray,
                 backgroundColor: "#fff",
                 borderStyle: "solid",
-                borderWidth: 2,
-                borderColor: "#3E92CC",
+                borderWidth: 1,
                 borderRadius: SIZES.small,
                 padding: SIZES.small,
                 height: 48,
               }}
               placeholder="Search items..."
             />
-            <MyButton
-              iconUrl={searchIcon}
-              dimension="80%"
-              onPress={() => {
-                // Update the condition here based on your requirements
-                setShowTips(!showTips); // Toggle the condition
-              }}
-            />
+            <MyButton iconUrl={searchIcon} dimension="80%" />
           </View>
-
           <View style={style.tabsContainer}>
             <FlatList
               data={jobTypes}
@@ -88,20 +122,23 @@ export default function Tips() {
               keyExtractor={(item) => item}
               contentContainerStyle={{ columnGap: SIZES.small }}
               horizontal
+              showsHorizontalScrollIndicator={false}
             />
           </View>
-
-          {showTips && (
-            <View style={style.tipsContainer}>
-              <FlatList
-                keyExtractor={(item) => item.key}
-                data={tips}
-                renderItem={({ item }) => (
-                  <Text style={styles.item}>{item.name}</Text>
-                )}
-              />
-            </View>
-          )}
+          <View>
+            <FlatList
+              data={tipsData}
+              renderItem={({ item }) => <TipCard data={item} />}
+              keyExtractor={(item) => item.id.toString()}
+              contentContainerStyle={{ columnGap: SIZES.small }}
+              vertical
+              showsVerticalScrollIndicator={false}
+              style={{
+                paddingTop: SIZES.medium,
+                paddingBottom: SIZES.medium,
+              }}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -112,6 +149,7 @@ const style = StyleSheet.create({
   container: {
     width: "100%",
   },
+
   tabsContainer: {
     width: "100%",
     marginTop: SIZES.medium,
@@ -127,22 +165,4 @@ const style = StyleSheet.create({
   tabText: (activeJobType, item) => ({
     color: activeJobType === item ? COLORS.white : "#3E92CC",
   }),
-});
-
-const styles = StyleSheet.create({
-  tipsContainer: {
-    flex: 1,
-    paddingTop: 40,
-    paddingHorizontal: 20,
-    backgroundColor: "#fff",
-    paddingBottom: 40,
-  },
-  item: {
-    flex: 1,
-    marginHorizontal: 10,
-    marginTop: 24,
-    padding: 30,
-    backgroundColor: "pink",
-    fontSize: 24,
-  },
 });
