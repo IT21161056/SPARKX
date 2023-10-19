@@ -4,6 +4,7 @@ const Images = [
     { image: require("../assets/homagama.jpg") },
     { image: require("../assets/gampha.png") },
     { image: require("../assets/nuwaraeliya.png") },
+    { image: require("../assets/nikaweratiya.jpg") },
 ];
 
 export const markers = [
@@ -122,6 +123,23 @@ export const markers = [
       rating: 'Polonnaruwa district',
       tobe:false,
       reason: 'Power shortage',
+      status:'Crew assigned'
+    },
+    {
+      id:8,
+      coordinate: {
+        latitude:7.717, 
+        longitude:80.117,
+      },
+      areas:[
+        "Ihakolagama", "Withikuliya", "Hengamuwa"
+      ],
+      title: "Nikaweratiya",
+      description: "3-4 hours power outage",
+      image: Images[4].image,
+      rating: 'Kurunegla district',
+      tobe:false,
+      reason: 'Tree fallen',
       status:'Crew assigned'
     },
 ];

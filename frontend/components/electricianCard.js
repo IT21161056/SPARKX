@@ -87,8 +87,8 @@ export default function ElectricianCard({ data }) {
         <Text style={style.textBlockCard}>Mobile No: {data.mobileNo}</Text>
         <View
           style={{
-            width: "40%",
-            height: "80%",
+            // width: "40%",
+            // height: "80%",
             marginTop: 15,
             display: "flex",
             justifyContent: "center",
@@ -97,7 +97,7 @@ export default function ElectricianCard({ data }) {
             borderWidth: 0.4,
             borderRadius: 15,
             overflow: "hidden",
-            marginTop: 10,
+            // marginTop: 10,
           }}
         >
           <TouchableOpacity onPress={navigateToMoreInfo}>
@@ -109,6 +109,9 @@ export default function ElectricianCard({ data }) {
                 textAlign: "center",
                 padding: 5,
                 backgroundColor: "#096FCC",
+                width: 200,
+                height: 35,
+                lineHeight: 35
               }}
             >
               More Info
