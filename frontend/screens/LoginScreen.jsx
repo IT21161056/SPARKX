@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import loginImg from "../assets/login_form_img.png";
@@ -15,8 +16,24 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = () => {
+    setIsLoading(false);
+    navigation.navigate("Tabs");
+  };
+  const login = () => {
+    setIsLoading(true);
+    setTimeout(navigate, 3000);
+  };
+
   return (
     <View style={style.container}>
+      {isLoading && (
+        <View style={[style.loadingSpinner, style.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
       <View style={style.imageContainer}>
         <Image source={loginImg} resizeMode="center" style={style.image} />
       </View>
@@ -37,6 +54,7 @@ export default function LoginScreen() {
             ...style.formItem,
             ...style.loginBtn,
           }}
+          onPress={login}
         >
           <Text style={style.loginText}>LOGIN</Text>
         </TouchableOpacity>
@@ -112,5 +130,21 @@ const style = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  },
+
+  loadingSpinner: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#ffffffca",
+    flex: 1,
+    justifyContent: "center",
+    zIndex: 5,
+  },
+
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
   },
 });
