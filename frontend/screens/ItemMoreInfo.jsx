@@ -1,24 +1,44 @@
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
   Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
-  Button,
+  View,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import bulbImage from "../assets/LEDBulb.jpg";
+import Modal from "react-native-modal";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import heart_filled from "../assets/heart_filled.png";
 import heart_outlined from "../assets/heart_outlined.png";
+import { SIZES } from "../constants/theme";
 
 const ItemMoreInfo = ({ route }) => {
-  const [favoriteItem, setFavoriteItem] = useState(false);
   const navigation = useNavigation();
   const { params } = useRoute();
+
+  const [favoriteItem, setFavoriteItem] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
   const itemData = route.params.itemData;
   let item = params;
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleConfirmBooking = () => {
+    // Show the success modal
+    toggleModal();
+
+    // Automatically close the modal after 3 seconds (adjust as needed)
+    setTimeout(() => {
+      toggleModal();
+      // Navigate to the next screen
+      navigation.navigate("Items");
+    }, 4000); // 3000 milliseconds (3 seconds) delay
+  };
 
   const { marker } = route.params;
   return (
@@ -107,12 +127,30 @@ const ItemMoreInfo = ({ route }) => {
           <Text style={style.itemDescriptionTitle}>Price</Text>
           <Text style={style.itemDetails}>Rs {itemData.price}</Text>
         </View>
-        <TouchableOpacity style={style.addToCartBtn}>
+        <TouchableOpacity
+          style={style.addToCartBtn}
+          onPress={handleConfirmBooking}
+        >
           <Text style={{ color: "#fff", fontSize: 20, fontWeight: 500 }}>
             Add to cart
           </Text>
         </TouchableOpacity>
       </View>
+      {/* Success Modal */}
+      <Modal isVisible={isModalVisible}>
+        <View style={style.modalContent}>
+          <View style={style.iconContainer}>
+            <Icon name="check-circle" size={60} color="#096FCC" />
+          </View>
+          <Text style={style.modalTitle}>Successful!</Text>
+          <Text style={style.modalDescription}>
+            {itemData.itemName} has been added successfully.
+          </Text>
+          <TouchableOpacity onPress={toggleModal} style={style.closeButton}>
+            <Text style={style.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -150,5 +188,48 @@ const style = StyleSheet.create({
     marginTop: 0,
     width: "86%",
     borderRadius: 10,
+  },
+  // Modal styles
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
+  modalText: {
+    fontSize: SIZES.large,
+    fontWeight: "bold",
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  iconContainer: {
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: "#096FCC",
+    paddingVertical: 6,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  closeButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#096FCC", // Customize title color
+    textAlign: "center", // Center-align the text
+  },
+  modalDescription: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: "center", // Center-align the text
+    color: "#333", // Customize description color
   },
 });
