@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { View, 
-         SafeAreaView, 
-         StyleSheet,
-         Image,
-         Text,
-         TouchableOpacity,
-         TextInput,
-         ScrollView} from "react-native";
+import { 
+      View, 
+      SafeAreaView, 
+      StyleSheet,
+      Image,
+      Text,
+      TouchableOpacity,
+      TextInput,
+      ScrollView
+} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,7 +19,7 @@ const ConfirmBooking = ( {route} ) => {
   const navigation = useNavigation();
   const electricianData = route.params?.electricianData;
 
-   const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -27,12 +29,12 @@ const ConfirmBooking = ( {route} ) => {
     // Show the success modal
     toggleModal();
 
-    // Automatically close the modal after 3 seconds (adjust as needed)
+    // Automatically close the modal after 3 seconds
     setTimeout(() => {
       toggleModal();
       // Navigate to the next screen
       navigation.navigate('ElectricianMoreInfo', { electricianData });
-    }, 4000); // 3000 milliseconds (3 seconds) delay
+    }, 4000);  // 4000 milliseconds (3 seconds) delay
   };
 
   return (
