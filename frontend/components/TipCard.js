@@ -1,22 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
+import { useNavigation } from "@react-navigation/native";
 
 const style = StyleSheet.create({
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 50,
+    height: 46,
     position: "relative",
-    backgroundColor: "yellow"
-
   },
   tipImage: {
-    width:"150%",
-    height: "150%",
-    borderColor: "#132930",
+    width: "100%",
+    height: "100%",
   },
   textCard: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
@@ -27,28 +25,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    padding: 26,
-    paddingLeft: 50,
+    padding: 12,
     fontSize: 18,
     borderRadius: 40,
   },
 });
 
 export default function TipCard({ data }) {
+
+  const navigation = useNavigation();
+
+  const navigateToMore = () => {
+    navigation.navigate("TipsMoreInfo", { tipsData: data });
+  };
+
   return (
-    <View
-      style={{
+    <TouchableOpacity onPress={navigateToMore}>
+     <View style={{
         width: 310,
-        height: 90,
+        height: 60,
         display: "flex",
         flexDirection: "row",
         borderRadius: 40,
         padding: 5,
+        borderWidth: 2,
         borderColor: "#132930",
         backgroundColor: "#fff",
         margin: 5,
-        elevation: 3,
-        borderWidth: 1,
       }}
     >
       <View style={style.imageContainer}>
@@ -59,8 +62,10 @@ export default function TipCard({ data }) {
         />
       </View>
       <View style={styles.container}>
-        <Text style={style.textCard}>{data.tip}</Text>
+        <Text style={style.textCard}>{data.name}</Text>
       </View>
     </View>
+    </TouchableOpacity>
+    
   );
 }

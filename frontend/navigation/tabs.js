@@ -8,6 +8,9 @@ import MapScreen from "../screens/Map";
 import OutageScreen from "../screens/OutageScreen";
 import ProfileScreen from "../screens/Profile";
 import TipsScreen from "../screens/Tips";
+import TipsMoreInfoScreen from "../screens/TipsMoreInfo";
+import TipCard from "../components/TipCard";
+import AddTipsScreen from "../screens/AddTips";
 import Electricians from "../screens/Electricians";
 import ElectricianMoreInfo from "../screens/ElectricianMoreInfo";
 import ConfirmBooking from "../screens/ConfirmBooking";
@@ -16,6 +19,7 @@ import AddFeedback from "../screens/AddFeedback";
 import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
 import left_arrow from "../assets/left_arrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -92,7 +96,6 @@ export default function Tabs() {
 
       <Tab.Screen
         name="Tips"
-        component={TipsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -108,7 +111,33 @@ export default function Tabs() {
             </View>
           ),
         }}
-      />
+      >
+        {() => (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Tips"
+              component={TipsScreen}
+              options={{
+                headerTitle: "Energy Saving Tips",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen
+              name="TipsMoreInfo"
+              component={TipsMoreInfoScreen}
+              options={{
+                headerTitle: "Energy Saving Tips Info",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen
+            name ="AddTips"
+            component={AddTipsScreen}
+            />
+          </Stack.Navigator>
+        )}
+      </Tab.Screen>
+
       <Tab.Screen
         name="OutageMap"
         options={{
