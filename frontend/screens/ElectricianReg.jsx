@@ -37,8 +37,25 @@ const ElectricianReg = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
         <ScrollView>
-           <View>
-
+           <View style={styles.mainView}>
+                <View>
+                    <TextInput
+                        placeholder='Enter Full Name *'
+                    />
+                    <TextInput
+                        placeholder='Enter Mobile Number *'
+                    />
+                    <TextInput
+                        placeholder='Enter Address *'
+                    />
+                    <TextInput
+                        placeholder='Enter Age *'
+                    />
+                    <TextInput
+                        placeholder='Enter qualifications and experience *'
+                    />
+                    <TouchableOpacity style={styles}/>
+                </View>
            </View> 
         </ScrollView>
     </SafeAreaView>
@@ -46,3 +63,20 @@ const ElectricianReg = () => {
 }
 
 export default ElectricianReg
+
+const styles = StyleSheet.create({
+    mainView:{
+        flex: 1,
+        padding: SIZES.large
+    },
+
+    submitButton:{
+        alignItems: "center",
+        justifyContent: "center",
+        width: 170,
+        height: 40, 
+        backgroundColor: "#096FCC",
+        borderRadius: SIZES.small,
+        marginLeft: 90,
+    }
+})

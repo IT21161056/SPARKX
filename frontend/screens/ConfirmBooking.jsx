@@ -81,7 +81,7 @@ const ConfirmBooking = ( {route} ) => {
               alignItems: "center",
               justifyContent: "center",
               width: 170,
-              height: 40, // Adjust the height as needed
+              height: 40,
               backgroundColor: "#096FCC",
               borderRadius: SIZES.small,
               marginLeft: 90,
