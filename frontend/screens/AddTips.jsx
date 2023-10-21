@@ -1,21 +1,20 @@
+import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
 import {
-  View,
-  Text,
+  Image,
   SafeAreaView,
   StyleSheet,
+  Text,
   TextInput,
-  Image,
   TouchableOpacity,
+  View,
 } from "react-native";
-import MyButton from "../components/customeBtn";
 import happyEmoji from "../assets/happy.png";
-import sadEmoji from "../assets/sad.png";
 import neutralEmoji from "../assets/neutral.png";
-import worstEmoji from "../assets/worst.png";
+import sadEmoji from "../assets/sad.png";
 import smileEmoji from "../assets/smile.png";
+import worstEmoji from "../assets/worst.png";
 import { COLORS } from "../constants/theme";
-import { Picker } from "@react-native-picker/picker";
 
 const experienceOptions = [
   { label: "Best", emoji: happyEmoji },

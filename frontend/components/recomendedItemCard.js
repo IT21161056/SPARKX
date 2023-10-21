@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
 import LEDBulb from "../assets/LEDBulb.jpg";
 
+import led_panel from "../assets/led_panel.png";
+
 export default function recomendedItemCard() {
   return (
     <TouchableOpacity activeOpacity={0.5}>
@@ -35,13 +37,18 @@ export default function recomendedItemCard() {
             backgroundColor: "#fff",
           }}
         >
-          <Image source={LEDBulb} resizeMode="center" style={style.logoImage} />
+          <Image
+            source={led_panel}
+            resizeMode="center"
+            style={style.logoImage}
+          />
         </View>
         <View style={{ flex: 1, height: "100%" }}>
-          <Text style={{ color: "black", fontWeight: 500 }}>Item card</Text>
-          <Text style={{ color: "black", fontWeight: 500 }}>Item card</Text>
-          <Text style={{ color: "black", fontWeight: 500 }}>Item card</Text>
-          <Text style={{ color: "black", fontWeight: 500 }}>Item card</Text>
+          <Text style={style.itemName}>Item card</Text>
+          <Text style={style.info}>40W</Text>
+          <Text style={style.info}>8"-20"</Text>
+          <Text style={style.info}>Square shape</Text>
+          <Text style={style.info}>Rs 9500-18000</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -52,5 +59,15 @@ const style = StyleSheet.create({
   logoImage: {
     width: "100%",
     height: "100%",
+  },
+  itemName: {
+    color: "#525151",
+    fontSize: 20,
+    fontWeight: "700",
+  },
+  info: {
+    color: "grey",
+    fontSize: 12,
+    fontWeight: "600",
   },
 });

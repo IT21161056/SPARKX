@@ -12,7 +12,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Image
+  Image,
 } from "react-native";
 import happyEmoji from "../assets/happy.png";
 import { useNavigation } from "@react-navigation/native";
@@ -124,10 +124,6 @@ const experienceFilterOptions = [
   { label: "Worst", emoji: require("../assets/worst.png") },
 ];
 
-
-
-
-
 const jobTypes = ["All", "Show Names According To Experience"];
 
 export default function Tips() {
@@ -140,7 +136,6 @@ export default function Tips() {
   function sortTipsByRating(tips) {
     return tips.sort((a, b) => b.rating - a.rating);
   }
-
 
   // Function to filter tips based on the selected filter and search query
   const filterTips = (filter, search) => {
@@ -375,6 +370,5 @@ const styless = StyleSheet.create({
     justifyContent: "space-between",
     padding: 12,
     fontSize: 18,
-   
   },
 });
