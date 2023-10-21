@@ -12,69 +12,159 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Image
 } from "react-native";
+import happyEmoji from "../assets/happy.png";
+import { useNavigation } from "@react-navigation/native";
+
+const styles = StyleSheet.create({
+  textContainer: {
+    borderRadius: 40,
+  },
+  showmoreCard: {
+    fontSize: 20,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+  },
+});
 
 const tipsData = [
   {
     id: 1,
+    name: "Padmini Priyanka",
     tip: "Energy Saving Tip 1",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/happy.png"),
+    experience: "Best",
+    rating: 5,
   },
   {
     id: 2,
+    name: "Harini Senevirathne",
     tip: "Energy Saving Tip 2",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/happy.png"),
+    experience: "Best",
+    rating: 4,
   },
   {
     id: 3,
+    name: "Nimmi Sureka",
     tip: "Energy Saving Tip 3",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/happy.png"),
+    experience: "Best",
+    rating: 3,
   },
 
   {
     id: 4,
+    name: "Nilmi Nelka",
     tip: "Energy Saving Tip 4",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/smile.png"),
+    experience: "Good",
+    rating: 2,
   },
 
   {
     id: 5,
+    name: "Vikum Viraj",
     tip: "Energy Saving Tip 5",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/smile.png"),
+    experience: "Good",
+    rating: 1,
   },
 
   {
     id: 6,
+    name: "Pasidu Parakum",
     tip: "Energy Saving Tip 6",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/neutral.png"),
+    experience: "Normal",
+    rating: 1,
   },
   {
     id: 7,
+    name: "Kusala Gamage",
     tip: "Energy Saving Tip 7",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/neutral.png"),
+    experience: "Normal",
+    rating: 2,
   },
   {
     id: 8,
+    name: "Anoj Peiris",
     tip: "Energy Saving Tip 8",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/sad.png"),
+    experience: "Bad",
+    rating: 3,
   },
   {
     id: 9,
+    name: "Kusala Gamage",
     tip: "Energy Saving Tip 9",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/sad.png"),
+    experience: "Bad",
+    rating: 4,
   },
   {
     id: 10,
+    name: "Renuka Hewawasam",
     tip: "Energy Saving Tip 10",
-    imageUrl: require("../assets/emoji.png"),
+    imageUrl: require("../assets/worst.png"),
+    experience: "Worst",
+    rating: 5,
   },
 ];
 
-const data = [1, 2];
-const jobTypes = ["All", "Experience"];
+const experienceFilterOptions = [
+  { label: "Best", emoji: happyEmoji },
+  { label: "Good", emoji: require("../assets/smile.png") },
+  { label: "Normal", emoji: require("../assets/neutral.png") },
+  { label: "Bad", emoji: require("../assets/sad.png") },
+  { label: "Worst", emoji: require("../assets/worst.png") },
+];
+
+
+
+
+
+const jobTypes = ["All", "Show Names According To Experience"];
 
 export default function Tips() {
-  const [activeItemType, setActiveItemType] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [showExperienceOptions, setShowExperienceOptions] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State variable for search query
+  const maxDisplayedTips = 5; // Number of tips to show initially
+  const sortedTipsData = sortTipsByRating(tipsData);
+  function sortTipsByRating(tips) {
+    return tips.sort((a, b) => b.rating - a.rating);
+  }
+
+
+  // Function to filter tips based on the selected filter and search query
+  const filterTips = (filter, search) => {
+    let filteredTips = tipsData;
+
+    if (filter !== "All") {
+      filteredTips = filteredTips.filter((tip) => tip.experience === filter);
+    }
+
+    if (search) {
+      filteredTips = filteredTips.filter((tip) =>
+        tip.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    return showMore ? filteredTips : filteredTips.slice(0, maxDisplayedTips);
+  };
+
+  const displayedTips = filterTips(activeFilter, searchQuery);
+
+  const navigation = useNavigation();
+  const navigateToAddTips = () => {
+    navigation.navigate("AddTips");
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -100,7 +190,9 @@ export default function Tips() {
                 padding: SIZES.small,
                 height: 48,
               }}
-              placeholder="Search items..."
+              placeholder="Search by name..."
+              value={searchQuery}
+              onChangeText={(text) => setSearchQuery(text)}
             />
             <MyButton iconUrl={searchIcon} dimension="80%" />
           </View>
@@ -109,14 +201,17 @@ export default function Tips() {
               data={jobTypes}
               renderItem={({ item }) => (
                 <TouchableOpacity
-                  style={style.tab(activeItemType, item)}
+                  style={style.tab(activeFilter, item)}
                   onPress={() => {
-                    setActiveItemType(item);
+                    setActiveFilter(item);
+                    if (item === "Show Names According To Experience") {
+                      setShowExperienceOptions(true);
+                    } else {
+                      setShowExperienceOptions(false);
+                    }
                   }}
                 >
-                  <Text style={style.tabText(activeItemType, item)}>
-                    {item}
-                  </Text>
+                  <Text style={style.tabText(activeFilter, item)}>{item}</Text>
                 </TouchableOpacity>
               )}
               keyExtractor={(item) => item}
@@ -125,9 +220,37 @@ export default function Tips() {
               showsHorizontalScrollIndicator={false}
             />
           </View>
+          {showExperienceOptions && (
+            <FlatList
+              data={experienceFilterOptions}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={style.experienceFilterOption(activeFilter, item.label)}
+                  onPress={() => {
+                    setActiveFilter(item.label);
+                    setShowExperienceOptions(false);
+                  }}
+                >
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Image
+                      source={item.emoji}
+                      style={{ width: 24, height: 24, marginRight: 8 }}
+                    />
+                    <Text style={style.tabText(activeFilter, item.label)}>
+                      {item.label}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item.label}
+              contentContainerStyle={{ justifyContent: "center" }}
+              showsVerticalScrollIndicator={false}
+            />
+          )}
+
           <View>
             <FlatList
-              data={tipsData}
+              data={displayedTips}
               renderItem={({ item }) => <TipCard data={item} />}
               keyExtractor={(item) => item.id.toString()}
               contentContainerStyle={{ columnGap: SIZES.small }}
@@ -139,6 +262,59 @@ export default function Tips() {
               }}
             />
           </View>
+          {tipsData.length > maxDisplayedTips && (
+            <TouchableOpacity onPress={() => setShowMore(!showMore)}>
+              <View
+                style={{
+                  width: 200,
+                  height: 40,
+                  display: "flex",
+                  flexDirection: "row",
+                  borderRadius: 40,
+                  borderWidth: 2,
+                  borderColor: "#132930",
+                  margin: 5,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: 60,
+                  backgroundColor: "#132930",
+                  marginBottom: 40,
+                }}
+              >
+                <View style={styles.textContainer}>
+                  <Text style={styles.showmoreCard}>
+                    {showMore ? "Show Less" : "Show More"}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={navigateToAddTips}>
+            <View
+              style={{
+                width: 310,
+                height: 60,
+                display: "flex",
+                flexDirection: "row",
+                borderRadius: 40,
+                padding: 2,
+                borderColor: "#132930",
+                margin: 5,
+                marginBottom: 40,
+              }}
+            >
+              <View style={styled.imageContainer}>
+                <Image
+                  source={require("../assets/plus.png")}
+                  style={styled.tipImage}
+                  resizeMode="center"
+                />
+              </View>
+              <View style={styless.container}>
+                <Text style={styled.textCard}>Add more suggestions here</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -154,15 +330,51 @@ const style = StyleSheet.create({
     width: "100%",
     marginTop: SIZES.medium,
   },
-  tab: (activeJobType, item) => ({
+  tab: (activeFilter, filter) => ({
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
     borderRadius: SIZES.small,
     borderWidth: 1,
-    borderColor: "#3E92CC",
-    backgroundColor: activeJobType === item ? "#3E92CC" : "transparent",
+    borderColor: activeFilter === filter ? "#3E92CC" : "transparent",
+    backgroundColor: activeFilter === filter ? "#3E92CC" : "transparent",
   }),
-  tabText: (activeJobType, item) => ({
-    color: activeJobType === item ? COLORS.white : "#3E92CC",
+  experienceFilterOption: (activeFilter, filter) => ({
+    paddingVertical: SIZES.small / 2,
+    paddingHorizontal: SIZES.small,
+    borderRadius: SIZES.small,
+    borderWidth: 1,
+    borderColor: activeFilter === filter ? "#3E92CC" : "transparent",
+    backgroundColor: activeFilter === filter ? "#3E92CC" : "transparent",
   }),
+  tabText: (activeFilter, filter) => ({
+    color: activeFilter === filter ? COLORS.white : "#3E92CC",
+  }),
+});
+
+const styled = StyleSheet.create({
+  imageContainer: {
+    width: 30,
+    height: 51,
+    position: "relative",
+  },
+  tipImage: {
+    width: "100%",
+    height: "100%",
+  },
+  textCard: {
+    fontSize: 20,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+const styless = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    padding: 12,
+    fontSize: 18,
+   
+  },
 });
