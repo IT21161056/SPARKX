@@ -29,31 +29,73 @@ export default function ItemCard({ data }) {
           elevation: 3,
         }}
       >
-        <View
-          style={{
-            width: "100%",
-            height: "60%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#fff",
-          }}
-        >
+        <View style={style.imageContainer}>
           <Image
             source={data.image}
             resizeMode="center"
             style={style.logoImage}
           />
         </View>
-        <Text style={{ color: "black", fontWeight: 500 }}>{data.itemName}</Text>
+        <View style={style.content}>
+          <View style={style.contentLeft}>
+            <Text style={style.itemName}>{data.itemName}</Text>
+            <Text style={style.infoTexts}>40W</Text>
+            <Text style={style.infoTexts}>Pin Type</Text>
+          </View>
+          <View style={style.contentRight}>
+            <TouchableOpacity>
+              <Text style={style.price}>{"Rs 1500"}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
 }
 
 const style = StyleSheet.create({
+  imageContainer: {
+    width: "100%",
+    height: "60%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderBottomColor: "#ededed",
+    borderBottomWidth: 1,
+  },
   logoImage: {
     width: "80%",
     height: "80%",
+  },
+  content: {
+    marginTop: 5,
+    display: "flex",
+    flexDirection: "row",
+  },
+  contentLeft: {
+    width: "60%",
+  },
+  contentRight: {
+    width: "40%",
+    justifyContent: "flex-end",
+  },
+  itemName: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#3b3a3a",
+    marginBottom: 5,
+  },
+  infoTexts: {
+    fontSize: 12,
+    color: "grey",
+  },
+  price: {
+    fontSize: 12,
+    color: "white",
+    backgroundColor: "#3E92CC",
+    paddingLeft: 2,
+    paddingRight: 2,
+    borderRadius: 3,
   },
 });
