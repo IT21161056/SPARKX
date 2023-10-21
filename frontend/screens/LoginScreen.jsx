@@ -13,10 +13,15 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import loginImg from "../assets/login_form_img.png";
 import { COLORS, SIZES } from "../constants/theme";
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
   const navigate = () => {
     setIsLoading(false);
@@ -25,7 +30,15 @@ export default function LoginScreen() {
   const login = () => {
     setIsLoading(true);
     setTimeout(navigate, 3000);
+
+    axios
+      .post("http://172.28.6.94:5000/user/login", credentials)
+      .then((response) => {
+        console.log(response.data.roles);
+      });
   };
+
+  console.log(credentials);
 
   return (
     <View style={style.container}>
@@ -43,11 +56,33 @@ export default function LoginScreen() {
       <View style={style.form}>
         <View style={style.formItem}>
           <Icon name="mail" style={style.icon} />
-          <TextInput style={style.input} placeholder="Email" />
+          <TextInput
+            style={style.input}
+            placeholder="Email"
+            onChangeText={(e) =>
+              setCredentials((prv) => {
+                return {
+                  ...prv,
+                  email: e,
+                };
+              })
+            }
+          />
         </View>
         <View style={style.formItem}>
           <Icon name="lock-closed" style={style.icon} />
-          <TextInput style={style.input} placeholder="Password" />
+          <TextInput
+            style={style.input}
+            placeholder="Password"
+            onChangeText={(e) =>
+              setCredentials((prv) => {
+                return {
+                  ...prv,
+                  password: e,
+                };
+              })
+            }
+          />
         </View>
         <TouchableOpacity
           style={{

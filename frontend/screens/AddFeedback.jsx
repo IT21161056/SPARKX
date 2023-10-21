@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { View, 
-         SafeAreaView, 
-         StyleSheet,
-         Image,
-         Text,
-         TouchableOpacity,
-         TextInput,
-         Button,
-         FlatList, 
-         ScrollView} from "react-native";
-import { SIZES, COLORS } from "../constants/theme";
+import React, { useState } from "react";
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Modal from "react-native-modal";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import pr1 from "../assets/pr1.jpg";
-import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { COLORS, SIZES } from "../constants/theme";
 
-const AddFeedback = ( { route }) => {
-
+const AddFeedback = ({ route }) => {
   const navigation = useNavigation();
   const electricianData = route.params?.electricianData;
 
@@ -35,51 +34,49 @@ const AddFeedback = ( { route }) => {
       toggleModal();
       // Navigate to the next screen
       navigation.navigate("ViewFeedbacks", { electricianData });
-      
     }, 4000); // 3000 milliseconds (3 seconds) delay
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-    <ScrollView>
-      <View style={{ flex: 1, padding: 18 }}>
-        <View style={styles.container}>
-            <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
-        </View>
-        <View style={styles.imageAndContainer0}>
+      <ScrollView>
+        <View style={{ flex: 1, padding: 18 }}>
+          <View style={styles.container}>
+            <Text style={styles.textBlockCard0}>{electricianData.name}</Text>
+          </View>
+          <View style={styles.imageAndContainer0}>
             <Image
-                source={electricianData.imageUrl}
-                resizeMode="cover"
-                style={styles.personImage}
+              source={electricianData.imageUrl}
+              resizeMode="cover"
+              style={styles.personImage}
             />
             <View style={styles.container0}>
-                <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
+              <Text style={styles.textBlockCard1}>
+                {electricianData.category}
+              </Text>
             </View>
-        </View>
+          </View>
 
-        <View style={styles.profileContainer}>
-          <View style={styles.profileImageContainer}>
-            <Image source={pr1} resizeMode="center" style={styles.profileImage} />
+          <View style={styles.profileContainer}>
+            <View style={styles.profileImageContainer}>
+              <Image
+                source={pr1}
+                resizeMode="center"
+                style={styles.profileImage}
+              />
+            </View>
+          </View>
+
+          <View>
+            <TextInput style={styles.inputLarger} placeholder="Add feedback" />
+          </View>
+
+          <View style={styles.submitFeedbackContainer}>
+            <TouchableOpacity onPress={hanldeSubmitFeedback}>
+              <Text style={styles.submitFeedbackButton}>Submit Feedback</Text>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View>
-          <TextInput
-            style={styles.inputLarger}
-            placeholder="Add feedback"
-        />
-        </View>
-        
-        <View style={styles.submitFeedbackContainer}>
-            <TouchableOpacity
-                onPress={hanldeSubmitFeedback}
-            >
-                <Text style={styles.submitFeedbackButton}>
-                  Submit Feedback
-                </Text>
-            </TouchableOpacity>
-        </View>
-      </View>
       </ScrollView>
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContent}>
@@ -94,22 +91,20 @@ const AddFeedback = ( { route }) => {
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-    </Modal>
+      </Modal>
     </SafeAreaView>
   );
-}
+};
 
 export default AddFeedback;
 
 const styles = StyleSheet.create({
-  container: {
-    
-  },
+  container: {},
   imageAndContainer0: {
     flexDirection: "cloumn", // Arrange the image and container0 horizontally
     alignItems: "center",
     marginBottom: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
   personImage: {
     width: 200, // Set a fixed width
@@ -119,7 +114,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.4, // Add border width
     borderColor: "#096FCC",
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
   },
   container0: {
     flex: 1,
@@ -148,20 +143,20 @@ const styles = StyleSheet.create({
   textBlockCard0: {
     fontSize: SIZES.large,
   },
-   textBlockCard1: {
+  textBlockCard1: {
     fontSize: SIZES.large,
     marginTop: 15,
-    color: "#fff"
+    color: "#fff",
   },
   submitFeedbackButton: {
     borderRadius: SIZES.small,
-    color: 'white',
+    color: "white",
     fontSize: 18,
     // fontFamily: "RedHatDisplay-SemiBold",
-    textAlign: 'center',
+    textAlign: "center",
     alignItems: "center",
     padding: 5,
-    backgroundColor: '#096FCC',
+    backgroundColor: "#096FCC",
     width: "50%",
     marginLeft: "25%",
     marginTop: 10,
@@ -171,11 +166,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 5,
-    marginLeft: 30
+    marginLeft: 30,
   },
   profileImageContainer: {
     borderRadius: 50,
-    borderWidth: 1
+    borderWidth: 1,
   },
   profileImage: {
     width: 80,
@@ -185,7 +180,7 @@ const styles = StyleSheet.create({
   inputLarger: {
     fontSize: 16,
     borderWidth: 0.4,
-    borderColor: '#096FCC',
+    borderColor: "#096FCC",
     borderRadius: 15,
     marginTop: 20,
     paddingVertical: 25, // Adjust the height as needed
@@ -193,49 +188,49 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#fff",
     elevation: 10,
-    height: 120
+    height: 120,
   },
-    // Modal styles
+  // Modal styles
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderColor: "rgba(0, 0, 0, 0.1)",
   },
   modalText: {
     fontSize: SIZES.large,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
   iconContainer: {
     marginBottom: 20,
   },
   closeButton: {
-    backgroundColor: '#096FCC',
+    backgroundColor: "#096FCC",
     paddingVertical: 6,
     paddingHorizontal: 20,
     borderRadius: 8,
   },
   closeButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
-    modalTitle: {
+  modalTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    color: '#096FCC', // Customize title color
-    textAlign: 'center', // Center-align the text
+    color: "#096FCC", // Customize title color
+    textAlign: "center", // Center-align the text
   },
   modalDescription: {
     fontSize: 16,
     marginBottom: 20,
-    textAlign: 'center', // Center-align the text
-    color: '#333', // Customize description color
+    textAlign: "center", // Center-align the text
+    color: "#333", // Customize description color
   },
 });

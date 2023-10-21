@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -18,7 +18,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  roles: [
+    {
+      type: String,
+      enum: ["user", "supplier", "electrician"], // Define your roles here
+    },
+  ],
 });
 
-
-export default mongoose.model("User",userSchema);
+export default mongoose.model("User", userSchema);
