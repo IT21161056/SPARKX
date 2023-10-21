@@ -48,7 +48,7 @@ export default function OutageScreen({ route }) {
             borderTopLeftRadius: 50,
             borderTopRightRadius: 50,
             backgroundColor: "white",
-            marginTop: -50,
+            marginTop: -60,
             paddingTop: 12,
           }}
         >
