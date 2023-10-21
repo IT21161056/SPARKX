@@ -54,7 +54,14 @@ const ElectricianReg = () => {
                     <TextInput
                         placeholder='Enter qualifications and experience *'
                     />
-                    <TouchableOpacity style={styles}/>
+                    <TouchableOpacity 
+                        style={styles.submitButton}
+                        onPress={handleRegistration}
+                    >
+                        <Text style={styles.buttonText}>
+                            Confirm Booking
+                        </Text>
+                    </TouchableOpacity>
                 </View>
            </View> 
         </ScrollView>
@@ -62,7 +69,7 @@ const ElectricianReg = () => {
   )
 }
 
-export default ElectricianReg
+export default ElectricianReg;
 
 const styles = StyleSheet.create({
     mainView:{
@@ -78,5 +85,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#096FCC",
         borderRadius: SIZES.small,
         marginLeft: 90,
+    },
+
+    buttonText:{
+        color: "white",
+        fontSize: SIZES.medium,
+        textAlign: "center",
     }
 })
