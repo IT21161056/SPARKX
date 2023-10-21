@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, SafeAreaView, StyleSheet } from "react-native";
-import StarRating from "react-native-star-rating";
+// import StarRating from "react-native-star-rating";
 
 const TipsMoreInfo = ({ route }) => {
   const tipsData = route.params.tipsData;
@@ -27,14 +27,14 @@ const TipsMoreInfo = ({ route }) => {
 
         <View style={styles.tableRow}>
           <Text style={styles.textBlockCard0}>Rating:</Text>
-          <StarRating
+          {/* <StarRating
             disabled={true}
             maxStars={5}
-            rating={tipsData.rating} 
-            fullStarColor={"#FFD700"} 
-            starSize={28} 
+            rating={tipsData.rating}
+            fullStarColor={"#FFD700"}
+            starSize={28}
             alignItems="left"
-          />
+          /> */}
         </View>
       </View>
     </SafeAreaView>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     marginBottom: 20,
-    justifyContent: "center", 
+    justifyContent: "center",
   },
   infoContainer: {
     alignItems: "center",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 100,
     height: 100,
-    borderRadius: 50, 
+    borderRadius: 50,
   },
   tableRow: {
     flexDirection: "row",
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     flex: 1, // To make the label take 1/3 of the row width
-
   },
   textBlockCard1: {
     fontSize: 18,
@@ -80,9 +79,8 @@ const styles = StyleSheet.create({
   textBlockCard2: {
     fontSize: 20,
     fontWeight: "bold",
-    flex: 1, 
+    flex: 1,
   },
-  
 });
 
 export default TipsMoreInfo;
