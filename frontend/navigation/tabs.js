@@ -38,8 +38,7 @@ export default function Tabs() {
         //   justifyContent: "center",
         //   alignItems: "center",
         // },
-        // headerTintColor: "#fff",
-
+        headerTintColor: "#fff",
         headerTitleAlign: "center",
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
@@ -49,7 +48,7 @@ export default function Tabs() {
           // left: 20,
           // right: 20,
           elevation: 0,
-          backgroundColor: "#fff",
+          backgroundColor: "#16324F",
           // borderRadius: 15,
           height: 50,
           ...styles.shadow,
@@ -79,7 +78,25 @@ export default function Tabs() {
           <Stack.Navigator>
             <Stack.Screen
               name="Items"
-              options={{ headerTitle: "Store", headerTitleAlign: "center" }}
+              options={{
+                headerTitleAlign: "left",
+                headerTitle: () => (
+                  <View>
+                    <Image
+                      style={styles.headerImage}
+                      source={require("../assets/SparkX.png")}
+                    />
+                  </View>
+                ),
+
+                statusBarColor: "#16324F",
+                headerTitleStyle: {
+                  color: "white",
+                },
+                headerStyle: {
+                  backgroundColor: "#16324F",
+                },
+              }}
               component={HomeScreen}
             />
             <Stack.Screen
@@ -252,5 +269,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     elevation: 5,
+  },
+  headerImage: {
+    height: 30,
+    width: 80,
   },
 });
