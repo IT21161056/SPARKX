@@ -91,9 +91,7 @@ export default function Home() {
                 fontSize: SIZES.medium,
                 color: COLORS.gray,
                 backgroundColor: "#fff",
-
                 borderStyle: "solid",
-
                 borderWidth: 2,
                 borderColor: "#3E92CC",
                 borderRadius: SIZES.small,
