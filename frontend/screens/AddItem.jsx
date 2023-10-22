@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,73 +8,34 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Alert,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import loginImg from "../assets/login_form_img.png";
+import defaultImage from "../assets/dafaultImage.png";
 import { COLORS, SIZES } from "../constants/theme";
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
-export default function LoginScreen() {
-  const navigation = useNavigation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
+const AddItem = () => {
+  const [item, setItem] = useState({
+    itemName: "",
+    itemDescriptions: [""],
   });
 
-  const showAlert = () => {
-    Alert.alert("Alert Title", "My Alert Msg", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
-  };
-  const login = () => {
-    setIsLoading(true);
-    // setTimeout(navigate, 3000);
-
-    axios
-      .post("http://192.168.1.100:5000/user/login", credentials)
-      .then((response) => {
-        // console.log(response.data.roles);
-        navigation.navigate("SupplierDashboard");
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        navigation.navigate("Tabs");
-        setIsLoading(false);
-        showAlert();
-      });
-  };
-
-  console.log(credentials);
+  const AddItem = () => {};
 
   return (
     <View style={style.container}>
-      {isLoading && (
-        <View style={[style.loadingSpinner, style.horizontal]}>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      )}
       <View style={style.imageContainer}>
-        <Image source={loginImg} resizeMode="center" style={style.image} />
-      </View>
-      <View style={style.titleContainer}>
-        <Text style={style.title}> Login into your account </Text>
+        <Image source={defaultImage} style={style.image} />
       </View>
       <View style={style.form}>
         <View style={style.formItem}>
-          <Icon name="mail" style={style.icon} />
           <TextInput
             style={style.input}
             placeholder="Email"
             onChangeText={(e) =>
-              setCredentials((prv) => {
+              setItem((prv) => {
                 return {
                   ...prv,
                   email: e,
@@ -84,12 +45,11 @@ export default function LoginScreen() {
           />
         </View>
         <View style={style.formItem}>
-          <Icon name="lock-closed" style={style.icon} />
           <TextInput
             style={style.input}
             placeholder="Password"
             onChangeText={(e) =>
-              setCredentials((prv) => {
+              setItem((prv) => {
                 return {
                   ...prv,
                   password: e,
@@ -98,22 +58,50 @@ export default function LoginScreen() {
             }
           />
         </View>
+        <View style={style.formItem}>
+          <TextInput
+            style={style.input}
+            placeholder="Email"
+            onChangeText={(e) =>
+              setItem((prv) => {
+                return {
+                  ...prv,
+                  email: e,
+                };
+              })
+            }
+          />
+        </View>
+        <View style={style.formItem}>
+          <TextInput
+            style={style.input}
+            placeholder="Password"
+            onChangeText={(e) =>
+              setItem((prv) => {
+                return {
+                  ...prv,
+                  password: e,
+                };
+              })
+            }
+          />
+        </View>
+
         <TouchableOpacity
           style={{
             ...style.formItem,
             ...style.loginBtn,
           }}
-          onPress={login}
+          onPress={AddItem}
         >
-          <Text style={style.loginText}>LOGIN</Text>
+          <Text style={style.loginText}>Add item</Text>
         </TouchableOpacity>
-        <Text onPress={() => navigation.navigate("Register")}>
-          Don’t have an account? sign up
-        </Text>
       </View>
     </View>
   );
-}
+};
+
+export default AddItem;
 
 const style = StyleSheet.create({
   container: {
@@ -128,6 +116,8 @@ const style = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: 10,
+    // backgroundColor: "#415",
   },
   titleContainer: {
     display: "flex",
@@ -144,6 +134,7 @@ const style = StyleSheet.create({
     marginTop: 20,
     width: 300,
     height: "100%",
+    objectFit: "fill",
   },
   form: {
     display: "flex",
@@ -151,6 +142,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     rowGap: 10,
     columnGap: 5,
+    marginTop: 20,
   },
   formItem: {
     width: "80%",
@@ -172,6 +164,7 @@ const style = StyleSheet.create({
     fontSize: 15,
     fontWeight: "600",
     color: "white",
+    textTransform: "uppercase",
   },
   loginBtn: {
     marginTop: 20,
