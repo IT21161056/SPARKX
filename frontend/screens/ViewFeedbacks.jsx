@@ -38,10 +38,10 @@ const feedbacks = [
 
 const ViewFeedbacks = ( { route } ) => {
 
-    const electricianData = route.params?.electricianData;
+  const electricianData = route.params?.electricianData;
 
-    const navigation = useNavigation();
-    const navigateToAddFeedback = () => {
+  const navigation = useNavigation();
+  const navigateToAddFeedback = () => {
     navigation.navigate("AddFeedback", { electricianData});
   }
 

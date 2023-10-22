@@ -6,7 +6,8 @@ import { View,
          StyleSheet,
          Image,
          Text,
-         TouchableOpacity } from "react-native";
+         TouchableOpacity, 
+         ScrollView} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
 
 export default function ElectricianMoreInfo( { route }) {
@@ -37,10 +38,14 @@ export default function ElectricianMoreInfo( { route }) {
     navigation.navigate("ViewFeedbacks", { electricianData });
   }
 
+  const navigateToRegister = () => {
+    navigation.navigate("ElectricianReg", { electricianData });
+  }
+
 return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+    <ScrollView>
       <View style={{ flex: 1, padding: SIZES.large }}>
-        {/* Display the selected electrician's data here */}
         <View>
           <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
         </View>
@@ -76,24 +81,19 @@ return (
         <TouchableOpacity
         onPress={navigateToBooking}>
             <Text 
-              style={{
-                borderRadius: SIZES.small,
-                color: "white",
-                fontSize: 16,
-                // fontFamily: "RedHatDisplay-SemiBold",
-                width: 170,
-                textAlign: "center",
-                padding: 5,
-                marginTop: 8,
-                marginLeft: 90,
-                backgroundColor: "#096FCC",
-                lineHeight: 25
-              }}>
+              style={styles.viewBooking}>
                   Book Now
             </Text>
         </TouchableOpacity>
         <TouchableOpacity
          onPress={navigateToFeedbacks}>
+            <Text 
+              style={styles.viewFeedbaks}>
+                  View Feedbacks
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+         onPress={navigateToRegister}>
             <Text 
               style={{
                 borderRadius: SIZES.small,
@@ -106,12 +106,14 @@ return (
                 marginTop: 8,
                 marginLeft: 90,
                 backgroundColor: "#096FCC",
-                lineHeight: 25
+                lineHeight: 25,
+                marginBottom: 40
               }}>
-                  View Feedbacks
+                  Register
             </Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -225,5 +227,31 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "left",
     width: '90%',
+  },
+  viewFeedbaks:{
+    borderRadius: SIZES.small,
+    color: "white",
+    fontSize: 16,
+    // fontFamily: "RedHatDisplay-SemiBold",
+    width: 170,
+    textAlign: "center",
+    padding: 5,
+    marginTop: 8,
+    marginLeft: 90,
+    backgroundColor: "#096FCC",
+    lineHeight: 25
+  },
+  viewBooking:{
+    borderRadius: SIZES.small,
+    color: "white",
+    fontSize: 16,
+    // fontFamily: "RedHatDisplay-SemiBold",
+    width: 170,
+    textAlign: "center",
+    padding: 5,
+    marginTop: 8,
+    marginLeft: 90,
+    backgroundColor: "#096FCC",
+    lineHeight: 25
   }
 });
