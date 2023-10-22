@@ -94,8 +94,8 @@ const style = StyleSheet.create({
     fontSize: 12,
     color: "white",
     backgroundColor: "#3E92CC",
-    paddingLeft: 4,
-    paddingRight: 4,
+    paddingLeft: 2,
+    paddingRight: 2,
     borderRadius: 3,
   },
 });

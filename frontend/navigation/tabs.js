@@ -17,9 +17,10 @@ import ConfirmBooking from "../screens/ConfirmBooking";
 import ViewFeedbacks from "../screens/ViewFeedbacks";
 import AddFeedback from "../screens/AddFeedback";
 import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
+import SupplierDashboard from "../screens/SupplierDashboard";
 import left_arrow from "../assets/left_arrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
-
+import ScreenHeaderBtn from "../components/ScreenHeaderBtn";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -103,8 +104,20 @@ export default function Tabs() {
               name="ItemMoreInfoScreen"
               component={ItemMoreInfoScreen}
               options={{
+                headerLeft: () => (
+                  <ScreenHeaderBtn
+                    handlePress={() => navigation.navigate("Items")}
+                  />
+                ),
                 headerTitle: "Item Info",
                 headerTitleAlign: "center",
+                statusBarColor: "#16324F",
+                headerTitleStyle: {
+                  color: "white",
+                },
+                headerStyle: {
+                  backgroundColor: "#16324F",
+                },
               }}
             />
           </Stack.Navigator>
@@ -147,10 +160,7 @@ export default function Tabs() {
                 headerTitleAlign: "center",
               }}
             />
-            <Stack.Screen
-            name ="AddTips"
-            component={AddTipsScreen}
-            />
+            <Stack.Screen name="AddTips" component={AddTipsScreen} />
           </Stack.Navigator>
         )}
       </Tab.Screen>

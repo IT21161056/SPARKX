@@ -1,21 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { SIZES, COLORS } from "../constants/theme";
-import MyButton from "../components/customeBtn";
-import searchIcon from "../assets/search.png";
-import TipCard from "../components/TipCard";
 import {
-  View,
-  Text,
+  FlatList,
+  Image,
   SafeAreaView,
   ScrollView,
-  TextInput,
   StyleSheet,
-  FlatList,
+  Text,
+  TextInput,
   TouchableOpacity,
-  Image,
+  View,
 } from "react-native";
 import happyEmoji from "../assets/happy.png";
-import { useNavigation } from "@react-navigation/native";
+import searchIcon from "../assets/search.png";
+import TipCard from "../components/TipCard";
+import MyButton from "../components/customeBtn";
+import { COLORS, SIZES } from "../constants/theme";
 
 const styles = StyleSheet.create({
   textContainer: {
