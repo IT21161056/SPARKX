@@ -7,9 +7,8 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { markers } from "../model/mapData"
-import MyButton from "../components/customeBtn";
-import searchIcon from "../assets/search.png";
-import { SIZES, COLORS } from "../constants/theme";
+import axios from "axios";
+
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 200;
@@ -20,6 +19,24 @@ const DeliveryScreen = () => {
 
     const navigation = useNavigation();
     const { params } = useRoute()
+
+    const [outageAreas,setOutageAreas] = useState([]);
+    console.log(outageAreas); //fetched
+
+    const fetchOutageList = async () => {
+        try {
+          const res = await axios.get(`http://192.168.43.95:5000/outage/`);
+          const data = res.data;
+          return data;
+        } catch (error) {
+          console.error("Error fetching Outage list:", error);
+          throw error;
+        }
+      };
+
+      useEffect(() => {
+        fetchOutageList().then((data) => setOutageAreas(data));
+      }, []);
 
     const initialMapState = {
         markers,
@@ -231,6 +248,8 @@ const DeliveryScreen = () => {
                 contentContainerStyle={{
                     paddingHorizontal: Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0
                 }}
+                keyboardShouldPersistTaps="handled"
+                keyboardDismissMode="on-drag" 
                 onScroll={Animated.event(
                     [
                         {
