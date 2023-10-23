@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import { useNavigation } from '@react-navigation/native'
 
 export const Register = async (req, res) => {
   const pattern = /^sup/; // The "i" flag makes the pattern case-insensitive
@@ -64,6 +65,8 @@ export const Login = async (req, res) => {
       }
       else if (user.roles.includes('electrician')){
         res.status(200).json({ roles: user.roles, data: user});
+        const navigation = useNavigation();
+        navigation.navigate('ElectricianReg');
       } else {
         // Redirect to the regular user page
         res.status(200).json({ roles: user.roles, data: user });

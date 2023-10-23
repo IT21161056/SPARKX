@@ -26,15 +26,12 @@ const ConfirmBooking = ( {route} ) => {
   };
 
   const handleConfirmBooking = () => {
-    // Show the success modal
     toggleModal();
 
-    // Automatically close the modal after 3 seconds
     setTimeout(() => {
       toggleModal();
-      // Navigate to the next screen
       navigation.navigate('ElectricianMoreInfo', { electricianData });
-    }, 4000);  // 4000 milliseconds (3 seconds) delay
+    }, 4000); 
   };
 
   return (
