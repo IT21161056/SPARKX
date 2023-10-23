@@ -79,11 +79,11 @@ const ConfirmBooking = ( {route} ) => {
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                width: 170,
+                width: '100%',
                 height: 40,
                 backgroundColor: "#096FCC",
                 borderRadius: SIZES.small,
-                marginLeft: 90,
+                marginTop: 30
               }}
               onPress={handleConfirmBooking}
             >

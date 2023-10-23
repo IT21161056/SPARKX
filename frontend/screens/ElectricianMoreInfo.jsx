@@ -233,25 +233,23 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     // fontFamily: "RedHatDisplay-SemiBold",
-    width: 170,
+    width: "100%",
     textAlign: "center",
     padding: 5,
     marginTop: 8,
-    marginLeft: 90,
     backgroundColor: "#096FCC",
-    lineHeight: 25
+    lineHeight: 32
   },
   viewBooking:{
     borderRadius: SIZES.small,
     color: "white",
     fontSize: 16,
     // fontFamily: "RedHatDisplay-SemiBold",
-    width: 170,
+    width: '100%',
     textAlign: "center",
     padding: 5,
     marginTop: 8,
-    marginLeft: 90,
     backgroundColor: "#096FCC",
-    lineHeight: 25
+    lineHeight: 32
   }
 });

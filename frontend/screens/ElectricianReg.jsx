@@ -40,7 +40,7 @@ export default function ElectricianRegistrationScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <View>
+      <View >
 
          <View style={styles.behindImage}>
           <View style={styles.imageContainer}>
@@ -64,6 +64,7 @@ export default function ElectricianRegistrationScreen() {
         <TextInput
           style={styles.input}
           placeholder="Enter Contact Number *"
+          keyboardType="phone-pad"
           value={contactNumber}
           onChangeText={(text) => setContactNumber(text)}
         />
@@ -77,6 +78,7 @@ export default function ElectricianRegistrationScreen() {
 
         <TextInput
           style={styles.input}
+          keyboardType="phone-pad"
           placeholder="Enter Age *"
           value={age}
           onChangeText={(text) => setAge(text)}
@@ -104,13 +106,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   behindImage:{
-
+    backgroundColor: '#122B5C',
+    borderRadius: 15, 
+    marginBottom: 30
   },
   imageContainer: {
     flex: 1,
     alignItems: 'center', 
     justifyContent: 'center',
-    marginBottom: 50,
+    padding: 10
   },
   imageUploadButton: {
     width: 150, 
