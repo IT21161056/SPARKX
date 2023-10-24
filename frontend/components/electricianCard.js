@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ElectricianCard({ data }) {
+  
   const navigation = useNavigation();
 
   const navigateToMoreInfo = () => {
