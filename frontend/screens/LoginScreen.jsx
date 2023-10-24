@@ -33,10 +33,6 @@ export default function LoginScreen() {
   const onCloseModal = () => {
     setModalVisible(false);
     setIsLoading(false);
-    setCredentials({
-      email: "",
-      password: "",
-    });
   };
 
   const login = () => {
