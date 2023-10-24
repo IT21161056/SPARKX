@@ -5,6 +5,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import Tab from "./tabs";
 import SupplierDashboard from "../screens/SupplierDashboard";
 import AddItem from "../screens/AddItem";
+import ElectrcianReg from "../screens/ElectricianReg";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -14,6 +15,7 @@ const StackNav = () => {
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="SupplierDashboard" component={SupplierDashboard} />
       <Stack.Screen name="AddItem" component={AddItem} />
+      <Stack.Screen name="ElectricianReg" component={ElectrcianReg} />
       <Stack.Screen
         name="Tabs"
         options={{
