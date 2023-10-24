@@ -44,13 +44,15 @@ export default function LoginScreen() {
       .then((response) => {
         const userRoles = response.data.roles;
 
+        console.log(userRoles);
+
         console.log();
         if (userRoles.includes("admin")) {
           navigation.navigate("Add Outage");
         } else if (userRoles.includes("supplier")) {
           navigation.navigate("SupplierDashboard");
         } else if (userRoles.includes("electrician")) {
-          // navigation.navigate("Pasindu")
+          navigation.navigate("ElectricianReg");
         } else {
           navigation.navigate("Tabs");
         }
