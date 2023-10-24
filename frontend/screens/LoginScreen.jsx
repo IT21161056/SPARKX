@@ -58,8 +58,6 @@ export default function LoginScreen() {
       });
   };
 
-  console.log(credentials);
-
   return (
     <View style={style.container}>
       {isLoading && (
