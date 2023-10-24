@@ -23,7 +23,7 @@ export const Register = async (req, res) => {
     console.log('user electrician');
     roles.push('electrician')
 
-  }
+  }}
   // create a new User object
   const newUser = new User({ name, email, password, phone, roles });
 
