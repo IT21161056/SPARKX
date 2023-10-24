@@ -5,8 +5,11 @@ import RegisterScreen from "../screens/RegisterScreen";
 import Tab from "./tabs";
 import SupplierDashboard from "../screens/SupplierDashboard";
 import AddItem from "../screens/AddItem";
+
 import ReportOutage from "../screens/ReportOutage";
+
 import ElectrcianReg from "../screens/ElectricianReg";
+
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
