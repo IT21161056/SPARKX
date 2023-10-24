@@ -14,6 +14,9 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import loginImg from "../assets/login_form_img.png";
 import { SIZES } from "../constants/theme";
+import { Ip } from "../Ip/Ip";
+
+console.log(Ip);
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -23,8 +26,8 @@ export default function LoginScreen() {
     password: "",
   });
 
-  const showAlert = () => {
-    Alert.alert("Alert Title", "My Alert Msg", [
+  const showAlert = (eer) => {
+    Alert.alert("Alert Title", `${eer}`, [
       {
         text: "Cancel",
         onPress: () => console.log("Cancel Pressed"),
@@ -37,10 +40,11 @@ export default function LoginScreen() {
     setIsLoading(true);
 
     axios
-      .post("http://192.168.43.95:5000/user/login", credentials)
+      .post(`http://${Ip}:5000/user/login`, credentials)
       .then((response) => {
         const userRoles = response.data.roles;
 
+        console.log();
         if (userRoles.includes("admin")) {
           navigation.navigate("Add Outage");
         } else if (userRoles.includes("supplier")) {
@@ -54,7 +58,7 @@ export default function LoginScreen() {
         setIsLoading(false);
       })
       .catch((error) => {
-        showAlert();
+        showAlert(error);
       });
   };
 
