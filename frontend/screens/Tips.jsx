@@ -34,7 +34,7 @@ const tipsData = [
   {
     id: 1,
     name: "Padmini Priyanka",
-    tip: "Energy Saving Tip 1",
+    tip: "Switch off lights and electrical appliances when not using them",
     imageUrl: require("../assets/happy.png"),
     experience: "Best",
     rating: 5,
@@ -42,7 +42,7 @@ const tipsData = [
   {
     id: 2,
     name: "Harini Senevirathne",
-    tip: "Energy Saving Tip 2",
+    tip: "Switch to energy-saving LED light globes",
     imageUrl: require("../assets/happy.png"),
     experience: "Best",
     rating: 4,
@@ -50,7 +50,7 @@ const tipsData = [
   {
     id: 3,
     name: "Nimmi Sureka",
-    tip: "Energy Saving Tip 3",
+    tip: "Wash your clothes in cold water if possible.",
     imageUrl: require("../assets/happy.png"),
     experience: "Best",
     rating: 3,
@@ -59,7 +59,7 @@ const tipsData = [
   {
     id: 4,
     name: "Nilmi Nelka",
-    tip: "Energy Saving Tip 4",
+    tip: "Air seal your home.",
     imageUrl: require("../assets/smile.png"),
     experience: "Good",
     rating: 2,
@@ -68,7 +68,7 @@ const tipsData = [
   {
     id: 5,
     name: "Vikum Viraj",
-    tip: "Energy Saving Tip 5",
+    tip: "Clean or replace all filters in your home regularly.",
     imageUrl: require("../assets/smile.png"),
     experience: "Good",
     rating: 1,
@@ -77,7 +77,7 @@ const tipsData = [
   {
     id: 6,
     name: "Pasidu Parakum",
-    tip: "Energy Saving Tip 6",
+    tip: "Use your microwave instead of your stove when cooking.",
     imageUrl: require("../assets/neutral.png"),
     experience: "Normal",
     rating: 1,
@@ -85,7 +85,7 @@ const tipsData = [
   {
     id: 7,
     name: "Kusala Gamage",
-    tip: "Energy Saving Tip 7",
+    tip: "Use natural light when possible.",
     imageUrl: require("../assets/neutral.png"),
     experience: "Normal",
     rating: 2,
@@ -93,7 +93,7 @@ const tipsData = [
   {
     id: 8,
     name: "Anoj Peiris",
-    tip: "Energy Saving Tip 8",
+    tip: "Turn off heated dry on your dishwasher and air dry instead.",
     imageUrl: require("../assets/sad.png"),
     experience: "Bad",
     rating: 3,
@@ -101,7 +101,7 @@ const tipsData = [
   {
     id: 9,
     name: "Kusala Gamage",
-    tip: "Energy Saving Tip 9",
+    tip: "Don't leave bathroom or kitchen ventilation fans running longer than necessary.",
     imageUrl: require("../assets/sad.png"),
     experience: "Bad",
     rating: 4,
@@ -109,7 +109,7 @@ const tipsData = [
   {
     id: 10,
     name: "Renuka Hewawasam",
-    tip: "Energy Saving Tip 10",
+    tip: "Replace your windows.",
     imageUrl: require("../assets/worst.png"),
     experience: "Worst",
     rating: 5,

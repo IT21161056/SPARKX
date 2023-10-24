@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, SafeAreaView, StyleSheet } from "react-native";
-// import StarRating from "react-native-star-rating";
+import StarRating from "react-native-star-rating";
 
 const TipsMoreInfo = ({ route }) => {
   const tipsData = route.params.tipsData;
@@ -27,14 +27,14 @@ const TipsMoreInfo = ({ route }) => {
 
         <View style={styles.tableRow}>
           <Text style={styles.textBlockCard0}>Rating:</Text>
-          {/* <StarRating
+          <StarRating
             disabled={true}
             maxStars={5}
             rating={tipsData.rating}
             fullStarColor={"#FFD700"}
             starSize={28}
             alignItems="left"
-          /> */}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   textBlockCard1: {
     fontSize: 18,
-    flex: 2, // To make the content take 2/3 of the row width
+    flex: 1, 
   },
   textBlockCard2: {
     fontSize: 20,

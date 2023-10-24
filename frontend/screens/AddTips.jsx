@@ -1,6 +1,7 @@
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
 import {
+  FlatList,
   Image,
   SafeAreaView,
   StyleSheet,
@@ -14,7 +15,7 @@ import neutralEmoji from "../assets/neutral.png";
 import sadEmoji from "../assets/sad.png";
 import smileEmoji from "../assets/smile.png";
 import worstEmoji from "../assets/worst.png";
-import { COLORS } from "../constants/theme";
+import { SIZES, COLORS } from "../constants/theme";
 
 const experienceOptions = [
   { label: "Best", emoji: happyEmoji },
@@ -39,131 +40,163 @@ export default function AddTips({ route }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Add a New Energy Saving Tip</Text>
+    <View style={style.container}>
       <Image
-        source={require("../assets/tips.jpeg")} // Add the path to your image
-        style={styles.image}
+        source={require("../assets/tips.jpeg")}
+        resizeMode="center"
+        style={style.image}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Your Name"
-        value={userName}
-        onChangeText={(text) => setUserName(text)}
-      />
-      <Text style={styles.label}>Select Your Energy Saving Experience:</Text>
-      <Picker
-        selectedValue={selectedExperience}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedExperience(itemValue)
-        }
-        style={styles.pick}
-      >
-        {experienceOptions.map((option) => (
-          <Picker.Item
-            key={option.label}
-            label={option.label}
-            value={option.label}
+      <View style={style.titleContainer}>
+        <Text style={style.title}> Add a New Energy Saving Tips </Text>
+      </View>
+      <View style={style.form}>
+        <View style={style.formItem}>
+          <TextInput
+            style={style.input}
+            placeholder="Your Name"
+            value={userName}
+            onChangeText={(text) => setUserName(text)}
           />
-        ))}
-      </Picker>
-      <TextInput
-        style={styles.input}
-        placeholder="Add Your Suggestion"
-        value={suggestion}
-        onChangeText={(text) => setSuggestion(text)}
-        multiline={true}
-        numberOfLines={5}
-      />
-      <View style={styles.buttonGroup}>
+        </View>
+        <View style={style.formItem}>
+          <Picker
+            selectedValue={selectedExperience}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedExperience(itemValue)
+            }
+            style={style.input}
+          >
+            <Picker.Item
+              label="Select Energy Saving Experience"
+              value=""
+              style={style.pick}
+            />
+            {experienceOptions.map((option) => (
+              <Picker.Item
+                key={option.label}
+                label={option.label}
+                value={option.label}
+                style={style.pick}
+              />
+            ))}
+          </Picker>
+        </View>
+        <View style={style.formItem}>
+          <TextInput
+            style={style.input}
+            placeholder="Add Your Suggestion"
+            value={suggestion}
+            onChangeText={(text) => setSuggestion(text)}
+            multiline={true}
+            numberOfLines={5}
+          />
+        </View>
         <TouchableOpacity
-          style={[styles.buttonContainer1, styles.cancelButton]}
-          onPress={handleCancel}
+          style={{
+            ...style.formItem,
+            ...style.loginBtn,
+          }}
+          onPress={handleAddTip}
         >
-          <Text style={[styles.buttonText, styles.cancelButtonText]}>
-            Cancel
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContainer} onPress={handleAddTip}>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={style.loginText}>SUBMIT</Text>
         </TouchableOpacity>
         {showSuccessMessage && (
           <Text style={styles.successMessage}>Successfully added!</Text>
         )}
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
+
+const style = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: COLORS.white,
+    width: "100%",
+    backgroundColor: "white",
+    height: "100%",
+  },
+
+  titleContainer: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: "#16324F",
+    marginBottom: SIZES.xLarge,
   },
   image: {
     width: "100%",
-    height: 150, // Adjust the height as needed
+    height: 150,
     marginBottom: 20,
     borderRadius: 30,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    rowGap: 10,
+    columnGap: 5,
   },
+  formItem: {
+    width: "80%",
+    backgroundColor: "#EDEDED",
+    display: "flex",
+    flexDirection: "row",
+    padding: 10,
+    borderRadius: 8,
+  },
+  icon: { fontSize: 25, color: "#16324fba" },
   input: {
-    fontSize: 16,
-    borderWidth: 2,
-    borderColor: COLORS.gray,
-    padding: 10,
-    marginBottom: 20,
-    borderRadius: 20,
+    backgroundColor: "transparent",
+    flex: 1,
+    fontSize: 15,
+    marginLeft: 5,
   },
+  loginText: {
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "600",
+    color: "white",
+  },
+  loginBtn: {
+    marginTop: 20,
+    backgroundColor: "#16324F",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+
+  loadingSpinner: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#ffffffca",
+    flex: 1,
+    justifyContent: "center",
+    zIndex: 5,
+  },
+
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
+  },
+
   pick: {
-    fontSize: 16,
+    fontSize: 15,
     borderWidth: 2,
     borderColor: COLORS.gray,
-    padding: 10,
-    marginBottom: 20,
+    flex: 1,
+    backgroundColor: "transparent",
+    padding: 0,
+    color: COLORS.gray,
   },
   label: {
     fontSize: 18,
     marginBottom: 10,
-  },
-  buttonGroup: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  buttonContainer1: {
-    flex: 1,
-    height: 50,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderColor: COLORS.primary,
-    borderWidth: 2,
-  },
-  buttonContainer: {
-    flex: 1,
-    height: 50,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#132930",
-    marginLeft: 3,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-  },
-  cancelButtonText: {
-    color: "#132930",
-  },
-  successMessage: {
-    color: "green",
-    fontSize: 18,
-    textAlign: "center",
-    marginTop: 10,
+    color: COLORS.gray,
   },
 });
