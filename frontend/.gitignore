@@ -2,7 +2,8 @@
 
 # dependencies
 node_modules/
-
+Ip/Ip.js
+Ip
 # Expo
 .expo/
 dist/
