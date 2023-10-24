@@ -16,26 +16,29 @@ import loginImg from "../assets/login_form_img.png";
 import { SIZES } from "../constants/theme";
 import { Ip } from "../Ip/Ip";
 
+import Modal from "react-native-modal";
+
 console.log(Ip);
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
 
-  const showAlert = (eer) => {
-    Alert.alert("Alert Title", `${eer}`, [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
+  const onCloseModal = () => {
+    setModalVisible(false);
+    setIsLoading(false);
+    setCredentials({
+      email: "",
+      password: "",
+    });
   };
+
   const login = () => {
     setIsLoading(true);
 
@@ -60,7 +63,7 @@ export default function LoginScreen() {
         setIsLoading(false);
       })
       .catch((error) => {
-        showAlert(error);
+        setModalVisible(true);
       });
   };
 
@@ -96,6 +99,7 @@ export default function LoginScreen() {
         <View style={style.formItem}>
           <Icon name="lock-closed" style={style.icon} />
           <TextInput
+            secureTextEntry={!showPassword}
             style={style.input}
             placeholder="Password"
             onChangeText={(e) =>
@@ -106,6 +110,11 @@ export default function LoginScreen() {
                 };
               })
             }
+          />
+          <Icon
+            name={showPassword ? "eye" : "eye-off"}
+            style={style.icon}
+            onPress={() => setShowPassword(!showPassword)}
           />
         </View>
         <TouchableOpacity
@@ -121,6 +130,18 @@ export default function LoginScreen() {
           Don’t have an account? sign up
         </Text>
       </View>
+      <Modal isVisible={isModalVisible}>
+        <View style={style.modalContent}>
+          <View style={style.iconContainer}>
+            <Icon name="close-circle-sharp" size={60} color="#cc0909" />
+          </View>
+          <Text style={style.modalTitle}>Login failed!</Text>
+          <Text style={style.modalDescription}>Invalid credentials!</Text>
+          <TouchableOpacity onPress={onCloseModal} style={style.closeButton}>
+            <Text style={style.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -205,5 +226,47 @@ const style = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     padding: 10,
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
+  modalText: {
+    fontSize: SIZES.large,
+    fontWeight: "bold",
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  iconContainer: {
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: "#096FCC",
+    paddingVertical: 6,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  closeButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#cc0909", // Customize title color
+    textAlign: "center", // Center-align the text
+  },
+  modalDescription: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: "center", // Center-align the text
+    color: "#333", // Customize description color
   },
 });

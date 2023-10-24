@@ -3,7 +3,9 @@ import User from "../models/User.js";
 export const Register = async (req, res) => {
   const pattern = /^sup/; // The "i" flag makes the pattern case-insensitive
 
-  const { name, email, password, phone } = req.body;
+  const { userName, email, password, phone } = req.body;
+
+  console.log(req.body);
 
   let roles = ["user"];
 
@@ -23,7 +25,7 @@ export const Register = async (req, res) => {
     roles.push("electrician");
   }
   // create a new User object
-  const newUser = new User({ name, email, password, phone, roles });
+  const newUser = new User({ name: userName, email, password, phone, roles });
 
   try {
     // save the user to the database
