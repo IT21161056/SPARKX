@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import Tab from "./tabs";
+import SupplierDashboard from "../screens/SupplierDashboard";
+import AddItem from "../screens/AddItem";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -10,6 +12,8 @@ const StackNav = () => {
     <Stack.Navigator screenOptions={{ headerShown: "false" }}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="SupplierDashboard" component={SupplierDashboard} />
+      <Stack.Screen name="AddItem" component={AddItem} />
       <Stack.Screen
         name="Tabs"
         options={{
