@@ -14,9 +14,15 @@ export const Register = async (req, res) => {
     console.log("user role set");
     roles.push("supplier");
   }
+
+  if(emailString.includes("admin")){
+    console.log("admin role set");
+    roles.push("admin");
+
   if (emailString.includes('electrician')) {
     console.log('user electrician');
     roles.push('electrician')
+
   }
   // create a new User object
   const newUser = new User({ name, email, password, phone, roles });
@@ -62,6 +68,9 @@ export const Login = async (req, res) => {
       if (user.roles.includes("supplier")) {
         // Redirect to the admin page
         res.status(200).json({ roles: user.roles, data: user });
+      } else if (user.roles.includes("admin")) {
+        res.status(200).json({ roles: user.roles, data: user });
+
       }
       else if (user.roles.includes('electrician')){
         res.status(200).json({ roles: user.roles, data: user});

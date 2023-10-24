@@ -5,6 +5,7 @@ const Images = [
     { image: require("../assets/gampha.png") },
     { image: require("../assets/nuwaraeliya.png") },
     { image: require("../assets/nikaweratiya.jpg") },
+    { image: require("../assets/badulla.jpg") },
 ];
 
 export const markers = [
@@ -88,7 +89,7 @@ export const markers = [
       image: Images[3].image,
       rating: 'Nuwara Eliya district',
       tobe:false,
-      reason: 'For maintains',
+      reason: 'Defective equipment',
       status:'Crew assigned'
     },
     {
@@ -140,6 +141,23 @@ export const markers = [
       rating: 'Kurunegla district',
       tobe:false,
       reason: 'Tree fallen',
+      status:'Crew assigned'
+    },
+    {
+      id:9,
+      coordinate: {
+        latitude:6.9895, 
+        longitude:81.0557,
+      },
+      areas:[
+        "Haputalle", "Diyatalawa", "Bandarawela"
+      ],
+      title: "Badulla",
+      description: "2 hours power outage",
+      image: Images[5].image,
+      rating: 'Badulla district',
+      tobe:false,
+      reason: 'Maintaince',
       status:'Crew assigned'
     },
 ];

@@ -23,6 +23,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 // import ElectricianReg from "../screens/ElectricianReg";
 import ScreenHeaderBtn from "../components/ScreenHeaderBtn";
 
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -199,8 +200,10 @@ export default function Tabs() {
               component={OutageScreen}
               options={{
                 headerTitleAlign: "center",
+                // headerShown:false
               }}
             />
+         
           </Stack.Navigator>
         )}
       </Tab.Screen>

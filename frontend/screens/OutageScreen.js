@@ -48,7 +48,7 @@ export default function OutageScreen({ route }) {
             borderTopLeftRadius: 50,
             borderTopRightRadius: 50,
             backgroundColor: "white",
-            marginTop: -50,
+            marginTop: -60,
             paddingTop: 12,
           }}
         >
@@ -78,12 +78,15 @@ export default function OutageScreen({ route }) {
           </View>
         </View>
         <View style={{ backgroundColor: "white", paddingBottom: 180 }}>
+          
+        {/* <Button onPress={() =>navigation.navigate("Add Outage")} title="Report">Add</Button> */}
+
           <Text
             style={{
               color: "#808080",
               paddingLeft: 16,
               paddingRight: 16,
-              paddingTop: 16,
+              paddingTop: 10,
               paddingBottom: 16,
               fontSize: 24,
               fontWeight: "bold",
@@ -242,21 +245,23 @@ export default function OutageScreen({ route }) {
             backgroundColor: "white",
           }}
         >
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Map")}
-            style={{
-              backgroundColor: "#33ccff",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              margin: 35,
-              borderRadius: 20,
-              padding: 10,
-            }}
-          >
-            <Text style={[styles.ok_btn]}>Ok</Text>
-          </TouchableOpacity>
+          <View style={{marginBottom:10}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Map")}
+              style={{
+                backgroundColor: "#33ccff",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                margin: 35,
+                borderRadius: 20,
+                padding: 10,
+              }}
+            >
+              <Text style={[styles.ok_btn]}>Ok</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </View>
