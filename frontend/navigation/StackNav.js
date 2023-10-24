@@ -10,15 +10,30 @@ import ReportOutage from "../screens/ReportOutage";
 
 import ElectrcianReg from "../screens/ElectricianReg";
 
-
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{ headerShown: "false" }}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="SupplierDashboard" component={SupplierDashboard} />
-      <Stack.Screen name="Add Outage" component={ReportOutage} options={{headerTitleAlign: "center",}}/>
+      <Stack.Screen
+        name="Add Outage"
+        component={ReportOutage}
+        options={{ headerTitleAlign: "center" }}
+      />
       <Stack.Screen name="AddItem" component={AddItem} />
       <Stack.Screen name="ElectricianReg" component={ElectrcianReg} />
       <Stack.Screen
