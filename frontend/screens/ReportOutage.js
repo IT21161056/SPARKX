@@ -41,7 +41,7 @@ export default function ReportOutage() {
     toggleModal();
     setTimeout(() => {
       toggleModal();
-      navigation.navigate('Map');
+      navigation.navigate('Tabs');
     }, 1200);
   };
 
