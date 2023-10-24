@@ -36,22 +36,26 @@ export default function LoginScreen() {
   };
   const login = () => {
     setIsLoading(true);
-  
+
     axios
       .post("http://192.168.43.95:5000/user/login", credentials)
       .then((response) => {
         const userRoles = response.data.roles;
-  
+
         if (userRoles.includes("admin")) {
 
           navigation.navigate("Add Outage");
-        } else if(userRoles.includes("supplier")) {
-  
+        } else if (userRoles.includes("supplier")) {
+
           navigation.navigate("SupplierDashboard");
-        }else{
+        } else if (userRoles.includes("electrician")) {
+
+          // navigation.navigate("Pasindu")
+        }
+        else {
           navigation.navigate("Tabs");
         }
-  
+
         setIsLoading(false);
       })
       .catch((error) => {
@@ -60,7 +64,7 @@ export default function LoginScreen() {
         showAlert();
       });
   };
-  
+
 
   console.log(credentials);
 
