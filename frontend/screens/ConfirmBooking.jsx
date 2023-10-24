@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { View, 
-         SafeAreaView, 
-         StyleSheet,
-         Image,
-         Text,
-         TouchableOpacity,
-         TextInput,
-         ScrollView} from "react-native";
+import { 
+      View, 
+      SafeAreaView, 
+      StyleSheet,
+      Image,
+      Text,
+      TouchableOpacity,
+      TextInput,
+      ScrollView
+} from "react-native";
 import { SIZES, COLORS } from "../constants/theme";
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,22 +19,19 @@ const ConfirmBooking = ( {route} ) => {
   const navigation = useNavigation();
   const electricianData = route.params?.electricianData;
 
-   const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
   const handleConfirmBooking = () => {
-    // Show the success modal
     toggleModal();
 
-    // Automatically close the modal after 3 seconds (adjust as needed)
     setTimeout(() => {
       toggleModal();
-      // Navigate to the next screen
       navigation.navigate('ElectricianMoreInfo', { electricianData });
-    }, 4000); // 3000 milliseconds (3 seconds) delay
+    }, 4000); 
   };
 
   return (
@@ -40,65 +39,65 @@ const ConfirmBooking = ( {route} ) => {
     <ScrollView>
       <View style={{ flex: 1, padding: SIZES.large }}>
         {/* Display the selected electrician's data here */}
-        <View>
-          <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
-        </View>
-        <View style={styles.imageAndContainer0}>
-          <Image
-            source={electricianData.imageUrl}
-            resizeMode="cover"
-            style={styles.personImage}
-          />
-          <View style={styles.container0}>
-            <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
-            <Text style={styles.textBlockCard1} >{electricianData.experience}</Text>
+          <View>
+            <Text style={styles.textBlockCard0} >{electricianData.name}</Text>
           </View>
-        </View>
+          <View style={styles.imageAndContainer0}>
+            <Image
+              source={electricianData.imageUrl}
+              resizeMode="cover"
+              style={styles.personImage}
+            />
+            <View style={styles.container0}>
+              <Text style={styles.textBlockCard1} >{electricianData.category}</Text>
+              <Text style={styles.textBlockCard1} >{electricianData.experience}</Text>
+            </View>
+          </View>
 
-        <View>
-          <TextInput
-            style={styles.inputLarger}
-            placeholder="Enter your electric issue *"
-        />
-
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your name *"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter contact no *"
-            keyboardType="phone-pad"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter address *"
-          />
-          <TouchableOpacity
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              width: 170,
-              height: 40, // Adjust the height as needed
-              backgroundColor: "#096FCC",
-              borderRadius: SIZES.small,
-              marginLeft: 90,
-            }}
-            onPress={handleConfirmBooking}
-          >
-            <Text
+          <View>
+            <TextInput
+              style={styles.inputLarger}
+              placeholder="Enter your electric issue *"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your name *"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter contact no *"
+              keyboardType="phone-pad"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter address *"
+            />
+            <TouchableOpacity
               style={{
-                color: "white",
-                fontSize: SIZES.medium,
-                textAlign: "center",
+                alignItems: "center",
+                justifyContent: "center",
+                width: '100%',
+                height: 40,
+                backgroundColor: "#096FCC",
+                borderRadius: SIZES.small,
+                marginTop: 30
               }}
+              onPress={handleConfirmBooking}
             >
-              Confirm Booking
-            </Text>
-          </TouchableOpacity>
-       </View>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: SIZES.medium,
+                  textAlign: "center",
+                }}
+              >
+                Confirm Booking
+              </Text>
+            </TouchableOpacity>
+          </View>
       </View>
       </ScrollView>
+      
       {/* Success Modal */}
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContent}>

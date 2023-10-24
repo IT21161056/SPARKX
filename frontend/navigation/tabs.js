@@ -20,7 +20,9 @@ import ItemMoreInfoScreen from "../screens/ItemMoreInfo";
 import SupplierDashboard from "../screens/SupplierDashboard";
 import left_arrow from "../assets/left_arrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
+// import ElectricianReg from "../screens/ElectricianReg";
 import ScreenHeaderBtn from "../components/ScreenHeaderBtn";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -198,8 +200,10 @@ export default function Tabs() {
               component={OutageScreen}
               options={{
                 headerTitleAlign: "center",
+                // headerShown:false
               }}
             />
+         
           </Stack.Navigator>
         )}
       </Tab.Screen>
@@ -243,6 +247,7 @@ export default function Tabs() {
             <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
             <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
             <Stack.Screen name="AddFeedback" component={AddFeedback} />
+            {/* <Stack.Screen name="ElectricianReg" component={ElectricianReg} /> */}
           </Stack.Navigator>
         )}
       </Tab.Screen>
