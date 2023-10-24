@@ -6,6 +6,7 @@ import Tab from "./tabs";
 import SupplierDashboard from "../screens/SupplierDashboard";
 import AddItem from "../screens/AddItem";
 import ReportOutage from "../screens/ReportOutage";
+import ElectrcianReg from "../screens/ElectricianReg";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ const StackNav = () => {
       <Stack.Screen name="SupplierDashboard" component={SupplierDashboard} />
       <Stack.Screen name="Add Outage" component={ReportOutage} options={{headerTitleAlign: "center",}}/>
       <Stack.Screen name="AddItem" component={AddItem} />
+      <Stack.Screen name="ElectricianReg" component={ElectrcianReg} />
       <Stack.Screen
         name="Tabs"
         options={{

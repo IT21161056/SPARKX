@@ -46,7 +46,7 @@ const ViewFeedbacks = ({ route }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       {/* <ScrollView> */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, padding: 7 }}>
         <View style={styles.container}>
           <Text style={styles.textBlockCard0}>{electricianData.name}</Text>
         </View>
@@ -138,18 +138,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: "#fff",
   },
+  addFeedbackContainer:{
+      alignItems: "center",
+      justifyContent: "center",
+      width: '100%',
+      height: 40, 
+      backgroundColor: "#096FCC",
+      borderRadius: SIZES.small,
+      marginTop: 10
+  },
   addFeedbackButton: {
-    borderRadius: SIZES.small,
     color: "white",
-    fontSize: 18,
-    // fontFamily: "RedHatDisplay-SemiBold",
+    fontSize: SIZES.medium,
     textAlign: "center",
-    alignItems: "center",
-    padding: 5,
-    backgroundColor: "#096FCC",
-    width: "50%",
-    marginLeft: "25%",
-    marginTop: 10,
-    lineHeight: 30,
   },
 });
