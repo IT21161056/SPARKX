@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-import { useNavigation } from '@react-navigation/native'
 
 export const Register = async (req, res) => {
   const pattern = /^sup/; // The "i" flag makes the pattern case-insensitive
@@ -15,15 +14,15 @@ export const Register = async (req, res) => {
     roles.push("supplier");
   }
 
-  if(emailString.includes("admin")){
+  if (emailString.includes("admin")) {
     console.log("admin role set");
     roles.push("admin");
 
-  if (emailString.includes('electrician')) {
-    console.log('user electrician');
-    roles.push('electrician')
-
-  }}
+    if (emailString.includes("electrician")) {
+      console.log("user electrician");
+      roles.push("electrician");
+    }
+  }
   // create a new User object
   const newUser = new User({ name, email, password, phone, roles });
 
@@ -70,12 +69,8 @@ export const Login = async (req, res) => {
         res.status(200).json({ roles: user.roles, data: user });
       } else if (user.roles.includes("admin")) {
         res.status(200).json({ roles: user.roles, data: user });
-
-      }
-      else if (user.roles.includes('electrician')){
-        res.status(200).json({ roles: user.roles, data: user});
-        const navigation = useNavigation();
-        navigation.navigate('ElectricianReg');
+      } else if (user.roles.includes("electrician")) {
+        res.status(200).json({ roles: user.roles, data: user });
       } else {
         // Redirect to the regular user page
         res.status(200).json({ roles: user.roles, data: user });
