@@ -17,11 +17,10 @@ export const Register = async (req, res) => {
   if (emailString.includes("admin")) {
     console.log("admin role set");
     roles.push("admin");
-
-    if (emailString.includes("electrician")) {
-      console.log("user electrician");
-      roles.push("electrician");
-    }
+  }
+  if (emailString.includes("electrician")) {
+    console.log("user electrician");
+    roles.push("electrician");
   }
   // create a new User object
   const newUser = new User({ name, email, password, phone, roles });
