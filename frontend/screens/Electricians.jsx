@@ -35,6 +35,11 @@ const electriciansData = [
     location: "Kottawa",
     mobileNo : "073637100",
     imageUrl: require('../assets/e9.jpg'),
+    category: "House Wiring",
+    experience: "3 Y experience",
+    availability: "yes",
+    qualification1: "House Wiring Certificate Program",
+    qualification2: "House wiring Safety Certificate"
   },
   {
     id: 3,
@@ -43,6 +48,11 @@ const electriciansData = [
     location: "Matara",
     mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
+    category: "A/C Repair",
+    experience: "4 Y experience",
+    availability: "yes",
+    qualification1: "A/C Repair Certificate Program",
+    qualification2: "A/C Repair Safety Certificate"
   },
 
   {
@@ -52,6 +62,11 @@ const electriciansData = [
     location: "Matara",
     mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
+    category: "Electrician",
+    experience: "1 Y experience",
+    availability: "yes",
+    qualification1: "Electrician Certificate Program",
+    qualification2: "Electrical Safety Certificate"
   },
 
   {
@@ -61,6 +76,11 @@ const electriciansData = [
     location: "Matara",
     mobileNo: "073637100",
     imageUrl: require('../assets/e6.jpg'),
+    category: "Electrician",
+    experience: "5 Y experience",
+    availability: "yes",
+    qualification1: "Electrician Certificate Program",
+    qualification2: "Electrical Safety Certificate"
   },
 
   {
@@ -70,6 +90,11 @@ const electriciansData = [
     location: "Maharagama",
     mobileNo: "073638100",
     imageUrl: require('../assets/e6.jpg'),
+    category: "Electrician",
+    experience: "5 Y experience",
+    availability: "yes",
+    qualification1: "Electrician Certificate Program",
+    qualification2: "Electrical Safety Certificate"
   },
   
 ];
