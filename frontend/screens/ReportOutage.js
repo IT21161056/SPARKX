@@ -1,15 +1,37 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity,Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import sparkX from "../assets/SparkX.png"
 
 export default function ReportOutage() {
 
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
 
-  
+  const [outageData, setOutageData] = useState({
+    id: null,
+    coordinate: { latitude: null, longitude: null },
+    areas: [],
+    title: '',
+    description: '',
+    image: '',
+    rating: '',
+    tobe: false,
+    reason: '',
+    status: '',
+  });
+
+  const handleInputChange = (field, value) => {
+    if (field === 'coordinate') {
+      // Split the input value into latitude and longitude
+      const [latitude, longitude] = value.split(',');
+      setOutageData({ ...outageData, coordinate: { latitude, longitude } });
+    } else {
+      setOutageData({ ...outageData, [field]: value });
+    }
+  };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -20,7 +42,7 @@ export default function ReportOutage() {
     setTimeout(() => {
       toggleModal();
       navigation.navigate('Map');
-    }, 4000); 
+    }, 1200);
   };
 
 
@@ -60,7 +82,7 @@ export default function ReportOutage() {
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-    </Modal>
+      </Modal>
     </View>
   );
 }
@@ -71,15 +93,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 15,
   },
   areaText: {
-    fontSize: 22
+    fontSize: 22,
+    fontWeight:'bold'
   },
   form: {
     gap: 3,
     marginTop: 30,
-
+  },
+  cardImage:{
+    position:'absolute',
+    marginTop:160,
+    right:-160
   },
   filed: {
     borderWidth: 1,

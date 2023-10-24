@@ -78,7 +78,9 @@ export default function OutageScreen({ route }) {
           </View>
         </View>
         <View style={{ backgroundColor: "white", paddingBottom: 180 }}>
-        <Button onPress={() =>navigation.navigate("Add Outage")} title="Report">Add</Button>
+          
+        {/* <Button onPress={() =>navigation.navigate("Add Outage")} title="Report">Add</Button> */}
+
           <Text
             style={{
               color: "#808080",

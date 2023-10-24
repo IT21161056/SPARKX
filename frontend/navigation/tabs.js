@@ -21,7 +21,7 @@ import SupplierDashboard from "../screens/SupplierDashboard";
 import left_arrow from "../assets/left_arrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ScreenHeaderBtn from "../components/ScreenHeaderBtn";
-import ReportOutage from "../screens/ReportOutage";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -202,14 +202,7 @@ export default function Tabs() {
                 // headerShown:false
               }}
             />
-             <Stack.Screen
-              name="Add Outage"
-              component={ReportOutage}
-              options={{
-                headerTitleAlign: "center",
-                // headerShown:false
-              }}
-            />
+         
           </Stack.Navigator>
         )}
       </Tab.Screen>

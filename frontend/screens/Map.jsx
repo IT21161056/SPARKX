@@ -9,7 +9,6 @@ import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { markers } from "../model/mapData"
 import axios from "axios";
 
-
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 200;
 const CARD_WIDTH = width * 0.7;
@@ -21,7 +20,7 @@ const DeliveryScreen = () => {
     const { params } = useRoute()
 
     const [outageAreas,setOutageAreas] = useState([]);
-    console.log(outageAreas); //fetched
+    // console.log(outageAreas); //fetched
 
     const fetchOutageList = async () => {
         try {
