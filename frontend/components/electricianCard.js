@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  buttonText:{
+  buttonMInfo:{
     borderRadius: SIZES.small,
     color: "white",
     fontSize: 16,
@@ -105,7 +105,7 @@ export default function ElectricianCard({ data }) {
         <View>
           <TouchableOpacity onPress={navigateToMoreInfo}>
             <Text
-              style={styles.buttonText}
+              style={styles.buttonMInfo}
             >
               More Info
             </Text>
