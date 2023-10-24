@@ -1,20 +1,19 @@
-import React, { Component, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import React, { useState } from "react";
 import {
-  View,
-  Text,
-  Button,
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
   ActivityIndicator,
   Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import loginImg from "../assets/login_form_img.png";
-import { COLORS, SIZES } from "../constants/theme";
 import Icon from "react-native-vector-icons/Ionicons";
-import axios from "axios";
+import loginImg from "../assets/login_form_img.png";
+import { SIZES } from "../constants/theme";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -43,28 +42,21 @@ export default function LoginScreen() {
         const userRoles = response.data.roles;
 
         if (userRoles.includes("admin")) {
-
           navigation.navigate("Add Outage");
         } else if (userRoles.includes("supplier")) {
-
           navigation.navigate("SupplierDashboard");
         } else if (userRoles.includes("electrician")) {
-
           // navigation.navigate("Pasindu")
-        }
-        else {
+        } else {
           navigation.navigate("Tabs");
         }
 
         setIsLoading(false);
       })
       .catch((error) => {
-        navigation.navigate("Tabs");
-        setIsLoading(false);
         showAlert();
       });
   };
-
 
   console.log(credentials);
 
