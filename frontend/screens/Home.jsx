@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import bulbImage from "../assets/LEDBulb.jpg";
+import led_panel from "../assets/led_panel.png";
 const data = [1, 2, 3, 4, 5, 6];
 const jobTypes = ["All", "Latest", "Popular"];
 const items = [
@@ -28,7 +29,7 @@ const items = [
   },
   {
     id: 2,
-    image: bulbImage,
+    image: led_panel,
     itemName: "LED Bulb",
     wattage: [15, 30, 40, 50],
     price: 2000,
@@ -44,7 +45,7 @@ const items = [
   },
   {
     id: 4,
-    image: bulbImage,
+    image: led_panel,
     itemName: "LED Bulb",
     wattage: [15, 30, 40, 50],
     price: 2000,
