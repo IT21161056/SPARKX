@@ -92,26 +92,6 @@ return (
                   View Feedbacks
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-         onPress={navigateToRegister}>
-            <Text 
-              style={{
-                borderRadius: SIZES.small,
-                color: "white",
-                fontSize: 16,
-                // fontFamily: "RedHatDisplay-SemiBold",
-                width: 170,
-                textAlign: "center",
-                padding: 5,
-                marginTop: 8,
-                marginLeft: 90,
-                backgroundColor: "#096FCC",
-                lineHeight: 25,
-                marginBottom: 40
-              }}>
-                  Register
-            </Text>
-        </TouchableOpacity>
       </View>
       </ScrollView>
     </SafeAreaView>
@@ -126,7 +106,7 @@ const styles = StyleSheet.create({
   personImage: {
     width: 180, // Set a fixed width
     height: 180, // Set a fixed height
-    resizeMode: "cover",
+    resizeMode: "contain",
     borderRadius: SIZES.medium,
     borderWidth: 0.4, // Add border width
     borderColor: "#096FCC",

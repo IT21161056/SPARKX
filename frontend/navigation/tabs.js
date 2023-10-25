@@ -240,14 +240,34 @@ export default function Tabs() {
               name="ElectricianMoreInfo"
               component={ElectricianMoreInfo}
               options={{
-                headerTitle: "Electrician info",
+                headerTitle: "Electrician More Info",
                 headerTitleAlign: "center",
               }}
             />
-            <Stack.Screen name="ConfirmBooking" component={ConfirmBooking} />
-            <Stack.Screen name="ViewFeedbacks" component={ViewFeedbacks} />
-            <Stack.Screen name="AddFeedback" component={AddFeedback} />
-            {/* <Stack.Screen name="ElectricianReg" component={ElectricianReg} /> */}
+            <Stack.Screen 
+              name="ConfirmBooking" 
+              component={ConfirmBooking} 
+              options={{
+                headerTitle: "Book Electrician",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen 
+              name="ViewFeedbacks" 
+              component={ViewFeedbacks} 
+              options={{
+                headerTitle: "User Feedbacks",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen 
+              name="AddFeedback" 
+              component={AddFeedback} 
+              options={{
+                headerTitle: "Add Feedback",
+                headerTitleAlign: "center",
+              }}
+            />
           </Stack.Navigator>
         )}
       </Tab.Screen>
