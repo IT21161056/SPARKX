@@ -9,11 +9,19 @@ import AddItem from "../screens/AddItem";
 import ReportOutage from "../screens/ReportOutage";
 
 import ElectrcianReg from "../screens/ElectricianReg";
+import SplashScreen from "../screens/SplashScreen";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{ headerShown: "false" }}>
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        options={{
+          headerShown:false
+        }}
+      />
       <Stack.Screen
         name="Login"
         component={LoginScreen}
