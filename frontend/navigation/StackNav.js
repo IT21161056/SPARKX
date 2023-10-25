@@ -34,8 +34,15 @@ const StackNav = () => {
         component={ReportOutage}
         options={{ headerTitleAlign: "center" }}
       />
+      <Stack.Screen 
+        name="Electrician Registration" 
+         options={{
+            headerTitle: "Electrician Registration",
+            headerTitleAlign: "center",
+          }}
+        component={ElectrcianReg} 
+      />
       <Stack.Screen name="AddItem" component={AddItem} />
-      <Stack.Screen name="ElectricianReg" component={ElectrcianReg} />
       <Stack.Screen
         name="Tabs"
         options={{

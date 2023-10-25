@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   personImage: {
     width: "105%",
     height: "100%",
+    resizeMode: "contain",
   },
 
   textBlockCard: {
