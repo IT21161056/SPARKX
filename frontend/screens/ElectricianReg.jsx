@@ -52,7 +52,7 @@ export default function ElectricianReg( {route} ) {
 
     setTimeout(() => {
       toggleModal();
-      navigation.navigate('Electricians', { electricianData });
+      navigation.navigate('SupplierDashboard', { electricianData });
     }, 4000); 
 
   };
