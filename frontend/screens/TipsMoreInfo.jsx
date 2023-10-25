@@ -7,14 +7,12 @@ const TipsMoreInfo = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.infoContainer}>
+      <View style={styles.infoContainer1}>
         <Image source={tipsData.imageUrl} style={styles.imageContainer} />
+        <Text style={styles.textBlockCard3}>{tipsData.name}</Text>
+      </View>
 
-        {/* Table Row 1: Name */}
-        <View style={styles.tableRow}>
-          <Text style={styles.textBlockCard2}>Name:</Text>
-          <Text style={styles.textBlockCard1}>{tipsData.name}</Text>
-        </View>
+      <View style={styles.infoContainer}>
 
         {/* Table Row 2: Energy Saving Tips */}
         <View style={styles.tableRow}>
@@ -26,7 +24,18 @@ const TipsMoreInfo = ({ route }) => {
         </View>
 
         <View style={styles.tableRow}>
-          <Text style={styles.textBlockCard0}>Rating:</Text>
+          <Text style={styles.textBlockCard0}>Energy Saving Experience:</Text>
+        </View>
+
+        <View style={styles.tableRow}>
+          <Text style={styles.textBlockCard1}> {tipsData.experience}</Text>
+        </View>
+
+        <View style={styles.tableRow}>
+          <Text style={styles.textBlockCard4}>Ratings:</Text>
+        </View>
+
+        <View style={styles.tableRow}>
           <StarRating
             disabled={true}
             maxStars={5}
@@ -45,16 +54,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginBottom: 20,
-    justifyContent: "center",
+  },
+  infoContainer1: {
+    alignItems: "center",
+    padding: 20,
+    marginLeft: 30,
+    width: 300,
+    borderRadius: 40,
+    marginBottom: 40,
+  },
+  textBlockCard3: {
+    fontSize: 36,
   },
   infoContainer: {
     alignItems: "center",
     padding: 20,
+    paddingBottom: 40,
     borderWidth: 2,
     marginLeft: 30,
     width: 300,
     borderRadius: 40,
+    borderColor: "#16324F",
   },
   imageContainer: {
     width: 100,
@@ -70,16 +90,25 @@ const styles = StyleSheet.create({
   textBlockCard0: {
     fontSize: 20,
     fontWeight: "bold",
-    flex: 1, // To make the label take 1/3 of the row width
+    flex: 1,
+    textAlign: "center",
   },
   textBlockCard1: {
     fontSize: 18,
-    flex: 1, 
+    flex: 1,
+    textAlign: "center",
   },
   textBlockCard2: {
     fontSize: 20,
     fontWeight: "bold",
     flex: 1,
+    textAlign: "center",
+  },
+  textBlockCard4: {
+    fontSize: 20,
+    fontWeight: "bold",
+    flex: 1,
+    textAlign: "center",
   },
 });
 

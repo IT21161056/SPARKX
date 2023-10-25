@@ -130,8 +130,8 @@ export default function Tips() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [showExperienceOptions, setShowExperienceOptions] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State variable for search query
-  const maxDisplayedTips = 5; // Number of tips to show initially
+  const [searchQuery, setSearchQuery] = useState("");
+  const maxDisplayedTips = 5;
   const sortedTipsData = sortTipsByRating(tipsData);
   function sortTipsByRating(tips) {
     return tips.sort((a, b) => b.rating - a.rating);
@@ -198,15 +198,20 @@ export default function Tips() {
                 <TouchableOpacity
                   style={style.tab(activeFilter, item)}
                   onPress={() => {
-                    setActiveFilter(item);
-                    if (item === "Show Names According To Experience") {
-                      setShowExperienceOptions(true);
-                    } else {
+                    if (item !== "Show Names According To Experience") {
+                      setActiveFilter(item);
                       setShowExperienceOptions(false);
+                    } else {
+                      setShowExperienceOptions(!showExperienceOptions);
                     }
                   }}
                 >
-                  <Text style={style.tabText(activeFilter, item)}>{item}</Text>
+                  <Text style={style.tabText(activeFilter, item)}>
+                    {item === "Show Names According To Experience" &&
+                    showExperienceOptions
+                      ? activeFilter // Display the currently selected filter
+                      : item}
+                  </Text>
                 </TouchableOpacity>
               )}
               keyExtractor={(item) => item}

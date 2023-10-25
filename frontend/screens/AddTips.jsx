@@ -16,8 +16,12 @@ import sadEmoji from "../assets/sad.png";
 import smileEmoji from "../assets/smile.png";
 import worstEmoji from "../assets/worst.png";
 import { SIZES, COLORS } from "../constants/theme";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Icon1 from "react-native-vector-icons/AntDesign";
+import Modal from "react-native-modal";
 
 const experienceOptions = [
+  { label: "Select Energy Saving Experience" },
   { label: "Best", emoji: happyEmoji },
   { label: "Good", emoji: smileEmoji },
   { label: "Normal", emoji: neutralEmoji },
@@ -27,11 +31,46 @@ const experienceOptions = [
 
 export default function AddTips({ route }) {
   const [userName, setUserName] = useState("");
-  const [selectedExperience, setSelectedExperience] = useState("Best");
+  const [selectedExperience, setSelectedExperience] = useState(
+    "Select Energy Saving Experience"
+  );
   const [suggestion, setSuggestion] = useState("");
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isIncorrect, setIsIncorrect] = useState(false);
 
   const handleAddTip = () => {
+    if (!userName || userName.trim() === "") {
+      setErrorMessage("Please enter your name.");
+      setShowErrorMessage(true);
+      return;
+    }
+
+    if (selectedExperience === "Select Energy Saving Experience") {
+      setErrorMessage("Please select your experience level.");
+      setShowErrorMessage(true);
+      return;
+    }
+
+    if (!suggestion || suggestion.trim() === "") {
+      setErrorMessage("Please enter your suggestion.");
+      setShowErrorMessage(true);
+      return;
+    }
+
+    if (!validateInput()) {
+      // Input is incorrect
+      setIsIncorrect(true);
+      return;
+    }
+
+    // If all fields are valid, clear any error messages and show the success modal.
+    setShowErrorMessage(false);
+    setErrorMessage("");
+    setShowSuccessModal(true);
+    setIsIncorrect(false);
+
     // Handle the logic for adding the tip with user's name, experience, and suggestion.
   };
 
@@ -46,31 +85,39 @@ export default function AddTips({ route }) {
         resizeMode="center"
         style={style.image}
       />
+
       <View style={style.titleContainer}>
-        <Text style={style.title}> Add a New Energy Saving Tips </Text>
+        <Text style={style.title}> Add a New Energy Saving Tip </Text>
       </View>
       <View style={style.form}>
         <View style={style.formItem}>
+          <Icon
+            name="user-circle-o"
+            size={20}
+            color="black"
+            style={style.icon}
+          />
           <TextInput
-            style={style.input}
+            style={[style.input, isIncorrect && style.incorrectInput]}
             placeholder="Your Name"
             value={userName}
             onChangeText={(text) => setUserName(text)}
           />
         </View>
-        <View style={style.formItem}>
+        <View style={style.formItem1}>
+          <Icon1
+            name="downcircleo"
+            size={20}
+            color="black"
+            style={style.icon1}
+          />
           <Picker
             selectedValue={selectedExperience}
             onValueChange={(itemValue, itemIndex) =>
               setSelectedExperience(itemValue)
             }
-            style={style.input}
+            style={[style.input1, isIncorrect && style.incorrectInput]}
           >
-            <Picker.Item
-              label="Select Energy Saving Experience"
-              value=""
-              style={style.pick}
-            />
             {experienceOptions.map((option) => (
               <Picker.Item
                 key={option.label}
@@ -82,13 +129,13 @@ export default function AddTips({ route }) {
           </Picker>
         </View>
         <View style={style.formItem}>
+          <Icon name="comments" size={20} color="black" style={style.icon} />
           <TextInput
-            style={style.input}
+            style={[style.input, isIncorrect && style.incorrectInput]}
             placeholder="Add Your Suggestion"
             value={suggestion}
             onChangeText={(text) => setSuggestion(text)}
             multiline={true}
-            numberOfLines={5}
           />
         </View>
         <TouchableOpacity
@@ -100,14 +147,29 @@ export default function AddTips({ route }) {
         >
           <Text style={style.loginText}>SUBMIT</Text>
         </TouchableOpacity>
-        {showSuccessMessage && (
-          <Text style={styles.successMessage}>Successfully added!</Text>
-        )}
+        <Text
+          style={showErrorMessage ? style.errorMessage : { display: "none" }}
+        >
+          {errorMessage}
+        </Text>
+
+        <Modal isVisible={showSuccessModal}>
+          <View style={style.successModal}>
+            <Text style={style.successMessage}>
+              Successfully added! {/* Display success message */}
+            </Text>
+            <TouchableOpacity
+              style={style.closeButton}
+              onPress={() => setShowSuccessModal(false)} // Close the modal
+            >
+              <Text style={style.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
     </View>
   );
 }
-
 
 const style = StyleSheet.create({
   container: {
@@ -148,12 +210,27 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
   },
+  formItem1: {
+    width: "80%",
+    backgroundColor: "#EDEDED",
+    // display: "flex",
+    flexDirection: "row",
+    borderRadius: 8,
+  },
   icon: { fontSize: 25, color: "#16324fba" },
+  icon1: { fontSize: 25, color: "#16324fba", padding: 12 },
   input: {
     backgroundColor: "transparent",
     flex: 1,
     fontSize: 15,
-    marginLeft: 5,
+    marginLeft: 20,
+  },
+  input1: {
+    backgroundColor: "transparent",
+    flex: 1,
+    fontSize: 15,
+    marginLeft: -10,
+    color: COLORS.gray,
   },
   loginText: {
     textAlign: "center",
@@ -198,5 +275,35 @@ const style = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     color: COLORS.gray,
+  },
+  successModal: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  successMessage: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#004225", // Your desired text color
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: "#16324F", // Your desired button color
+    padding: 10,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  closeButtonText: {
+    color: "white",
+    fontSize: 16,
+  },
+  errorMessage: {
+    color: "red", // Your desired error message color
+    marginBottom: 20,
+  },
+  incorrectInput: {
+    borderColor: "red",
+    borderWidth: 2,
   },
 });
