@@ -20,6 +20,7 @@ export const Register = async (req, res) => {
     console.log("admin role set");
     roles.push("admin");
   }
+  
   if (emailString.includes("electrician")) {
     console.log("user electrician");
     roles.push("electrician");

@@ -6,10 +6,10 @@ import * as ImagePicker from 'expo-image-picker';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function ElectricianReg( {route} ) {
+export default function ElectricianReg( ) {
 
   const navigation = useNavigation();
-  const electricianData = route.params?.electricianData;
+  // const electricianData = route.params?.electricianData;
 
   const [fullName, setFullName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
@@ -52,7 +52,7 @@ export default function ElectricianReg( {route} ) {
 
     setTimeout(() => {
       toggleModal();
-      navigation.navigate('Electricians', { electricianData });
+      navigation.navigate('Tabs');
     }, 4000); 
 
   };

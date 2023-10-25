@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   personImage: {
     width: 200, // Set a fixed width
     height: 200, // Set a fixed height
-    resizeMode: "cover",
+    resizeMode: "contain",
     borderRadius: SIZES.medium,
     borderWidth: 0.4, // Add border width
     borderColor: "#096FCC",
