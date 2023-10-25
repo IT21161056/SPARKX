@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { markers } from "../model/mapData"
 import axios from "axios";
+import Ip from "../Ip/Ip"
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 200;
@@ -22,20 +23,20 @@ const DeliveryScreen = () => {
     const [outageAreas,setOutageAreas] = useState([]);
     // console.log(outageAreas); //fetched
 
-    const fetchOutageList = async () => {
-        try {
-          const res = await axios.get(`http://192.168.43.95:5000/outage/`);
-          const data = res.data;
-          return data;
-        } catch (error) {
-          console.error("Error fetching Outage list:", error);
-          throw error;
-        }
-      };
+    // const fetchOutageList = async () => {
+    //     try {
+    //       const res = await axios.get(`http://${Ip}:5000/outage/`);
+    //       const data = res.data;
+    //       return data;
+    //     } catch (error) {
+    //       console.error("Error fetching Outage list:", error);
+    //       throw error;
+    //     }
+    //   };
 
-      useEffect(() => {
-        fetchOutageList().then((data) => setOutageAreas(data));
-      }, []);
+    //   useEffect(() => {
+    //     fetchOutageList().then((data) => setOutageAreas(data));
+    //   }, []);
 
     const initialMapState = {
         markers,
