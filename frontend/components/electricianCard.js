@@ -95,7 +95,6 @@ export default function ElectricianCard({ data }) {
       >
         <Image
           source={data.imageUrl}
-          resizeMode="center"
           style={styles.personImage}
         />
       </View>

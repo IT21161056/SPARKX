@@ -19,7 +19,7 @@ const electriciansData = [
     id: 1,
     name: "Ashan Perera",
     age: 34,
-    location: "Hoamagama",
+    location: "Homagama",
     mobileNo : "073637100",
     imageUrl: require('../assets/e1.png'),
     category: "Electrician",
@@ -43,13 +43,13 @@ const electriciansData = [
   },
   {
     id: 3,
-    name: "Nimal Perera",
+    name: "Sahan Perera",
     age: 35,
     location: "Matara",
     mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
     category: "A/C Repair",
-    experience: "4 Y experience",
+    experience: "2 Y experience",
     availability: "yes",
     qualification1: "A/C Repair Certificate Program",
     qualification2: "A/C Repair Safety Certificate"
@@ -57,9 +57,9 @@ const electriciansData = [
 
   {
     id: 4,
-    name: "Nimal Perera",
+    name: "Senura dilshan",
     age: 35,
-    location: "Matara",
+    location: "Galle",
     mobileNo : "073637100",
     imageUrl: require('../assets/e6.jpg'),
     category: "Electrician",
@@ -76,8 +76,8 @@ const electriciansData = [
     location: "Matara",
     mobileNo: "073637100",
     imageUrl: require('../assets/e6.jpg'),
-    category: "Electrician",
-    experience: "5 Y experience",
+    category: "A/C Repair",
+    experience: "7 Y experience",
     availability: "yes",
     qualification1: "Electrician Certificate Program",
     qualification2: "Electrical Safety Certificate"
@@ -104,6 +104,7 @@ const jobTypes = ["All", "Electrcians", "House Wiring", "A/C Repair"];
 
 export default function Electrcians() {
   const [activeItemType, setActiveItemType] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -130,7 +131,9 @@ export default function Electrcians() {
                 padding: SIZES.small,
                 height: 48,
               }}
-              placeholder="Search items..."
+              placeholder="Search electricians..."
+              value={searchQuery}
+              onChangeText={(text) => setSearchQuery(text)}
             />
             <MyButton iconUrl={searchIcon} dimension="80%" />
           </View>
@@ -157,7 +160,11 @@ export default function Electrcians() {
           </View>
           <View>
             <FlatList
-              data={ electriciansData }
+              // data={ electriciansData }
+              data={electriciansData.filter((electrician) =>
+                electrician.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                electrician.location.toLowerCase().includes(searchQuery.toLowerCase())
+              )}
               renderItem={({ item }) => <ElectricianCard data={ item }/>}
               keyExtractor={(item) => item.id.toString()}
               contentContainerStyle={{ columnGap: SIZES.small }}
