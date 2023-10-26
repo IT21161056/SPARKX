@@ -13,7 +13,6 @@ const TipsMoreInfo = ({ route }) => {
       </View>
 
       <View style={styles.infoContainer}>
-
         {/* Table Row 2: Energy Saving Tips */}
         <View style={styles.tableRow}>
           <Text style={styles.textBlockCard0}>Energy Saving Tips:</Text>

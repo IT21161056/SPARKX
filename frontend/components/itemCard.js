@@ -15,7 +15,7 @@ export default function ItemCard({ data }) {
       <View
         style={{
           width: 150,
-          height: 180,
+          height: 190,
           display: "flex",
           flexDirection: "column",
           borderRadius: SIZES.medium,
@@ -37,15 +37,17 @@ export default function ItemCard({ data }) {
           />
         </View>
         <View style={style.content}>
-          <View style={style.contentLeft}>
-            <Text style={style.itemName}>{data.itemName}</Text>
-            <Text style={style.infoTexts}>40W</Text>
-            <Text style={style.infoTexts}>Pin Type</Text>
-          </View>
-          <View style={style.contentRight}>
-            <TouchableOpacity>
-              <Text style={style.price}>{"Rs 1500"}</Text>
-            </TouchableOpacity>
+          <Text style={style.itemName}>{data.itemName}</Text>
+          <View style={style.infos}>
+            <View style={style.contentLeft}>
+              <Text style={style.infoTexts}>40W</Text>
+              <Text style={style.infoTexts}>Pin Type</Text>
+            </View>
+            <View style={style.contentRight}>
+              <TouchableOpacity>
+                <Text style={style.price}>{"Rs 1500"}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -70,8 +72,13 @@ const style = StyleSheet.create({
   },
   content: {
     marginTop: 5,
+    height: "40%",
+  },
+  infos: {
     display: "flex",
     flexDirection: "row",
+    marginTop: "auto",
+    marginBottom: 0,
   },
   contentLeft: {
     width: "60%",
@@ -81,10 +88,11 @@ const style = StyleSheet.create({
     justifyContent: "flex-end",
   },
   itemName: {
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: "600",
     color: "#3b3a3a",
     marginBottom: 5,
+    width: "100%",
   },
   infoTexts: {
     fontSize: 12,
