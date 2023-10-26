@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SIZES, COLORS } from "../constants/theme";
 import MyButton from "../components/customeBtn";
 import searchIcon from "../assets/search.png";
@@ -16,6 +16,9 @@ import {
 } from "react-native";
 import bulbImage from "../assets/LEDBulb.jpg";
 import led_panel from "../assets/led_panel.png";
+import high_power from "../assets/17-High-Power.jpg";
+import garden_led from "../assets/gardenLED.jpg";
+
 const data = [1, 2, 3, 4, 5, 6];
 const jobTypes = ["All", "Latest", "Popular"];
 const items = [
@@ -37,16 +40,16 @@ const items = [
   },
   {
     id: 3,
-    image: bulbImage,
-    itemName: "LED Bulb",
+    image: high_power,
+    itemName: "High power LED Bulb",
     wattage: [15, 30, 40, 50],
     price: 2000,
     holderType: "pin-type / skrew-type",
   },
   {
     id: 4,
-    image: led_panel,
-    itemName: "LED Bulb",
+    image: garden_led,
+    itemName: "Garden Lamp",
     wattage: [15, 30, 40, 50],
     price: 2000,
     holderType: "pin-type / skrew-type",
@@ -63,6 +66,22 @@ const items = [
 
 export default function Home() {
   const [activeItemType, setActiveItemType] = useState("All");
+  const [searchQuery, setSearch] = useState("");
+  const [list, setList] = useState([items]);
+
+  const filterTips = (search) => {
+    let filterItems = items;
+
+    if (search) {
+      filterItems = filterItems.filter((item) =>
+        item.itemName.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    return filterItems;
+  };
+
+  const displayedItems = filterTips(searchQuery);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -87,6 +106,7 @@ export default function Home() {
             }}
           >
             <TextInput
+              onChangeText={(value) => setSearch(value)}
               style={{
                 flex: 1,
                 fontSize: SIZES.medium,
@@ -126,7 +146,7 @@ export default function Home() {
           </View>
           <View>
             <FlatList
-              data={items}
+              data={displayedItems}
               renderItem={({ item }) => <ItemCard data={item} />}
               keyExtractor={(item) => item.id}
               contentContainerStyle={{ columnGap: SIZES.small }}

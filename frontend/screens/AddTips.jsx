@@ -1,24 +1,22 @@
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
 import {
-  FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import Modal from "react-native-modal";
+import Icon1 from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/FontAwesome";
 import happyEmoji from "../assets/happy.png";
 import neutralEmoji from "../assets/neutral.png";
 import sadEmoji from "../assets/sad.png";
 import smileEmoji from "../assets/smile.png";
 import worstEmoji from "../assets/worst.png";
-import { SIZES, COLORS } from "../constants/theme";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Icon1 from "react-native-vector-icons/AntDesign";
-import Modal from "react-native-modal";
+import { COLORS, SIZES } from "../constants/theme";
 
 const experienceOptions = [
   { label: "Select Energy Saving Experience" },
@@ -59,12 +57,6 @@ export default function AddTips({ route }) {
       return;
     }
 
-    if (!validateInput()) {
-      // Input is incorrect
-      setIsIncorrect(true);
-      return;
-    }
-
     // If all fields are valid, clear any error messages and show the success modal.
     setShowErrorMessage(false);
     setErrorMessage("");
@@ -80,11 +72,13 @@ export default function AddTips({ route }) {
 
   return (
     <View style={style.container}>
-      <Image
-        source={require("../assets/tips.jpeg")}
-        resizeMode="center"
-        style={style.image}
-      />
+      <View style={style.imageContainer}>
+        <Image
+          source={require("../assets/tips.jpeg")}
+          resizeMode="contain"
+          style={style.image}
+        />
+      </View>
 
       <View style={style.titleContainer}>
         <Text style={style.title}> Add a New Energy Saving Tip </Text>
@@ -177,7 +171,13 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     height: "100%",
   },
-
+  imageContainer: {
+    width: "100%",
+    height: "40%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   titleContainer: {
     display: "flex",
     alignItems: "center",
@@ -189,12 +189,7 @@ const style = StyleSheet.create({
     color: "#16324F",
     marginBottom: SIZES.xLarge,
   },
-  image: {
-    width: "100%",
-    height: 150,
-    marginBottom: 20,
-    borderRadius: 30,
-  },
+  image: { width: 300, height: 300 },
   form: {
     display: "flex",
     flexDirection: "column",

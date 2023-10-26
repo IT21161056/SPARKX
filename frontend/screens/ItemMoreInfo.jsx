@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { AsyncStorage } from "react-native";
 import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import heart_filled from "../assets/heart_filled.png";
@@ -68,8 +69,8 @@ const ItemMoreInfo = ({ route }) => {
       >
         <View
           style={{
-            width: 340,
-            height: 340,
+            width: 350,
+            height: 350,
             backgroundColor: "#fff",
             borderRadius: 30,
             position: "absolute",
@@ -159,8 +160,8 @@ export default ItemMoreInfo;
 
 const style = StyleSheet.create({
   logoImage: {
-    width: "80%",
-    height: "80%",
+    width: "85%",
+    height: "85%",
   },
   itemName: {
     fontSize: 25,
