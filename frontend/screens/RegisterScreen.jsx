@@ -82,6 +82,7 @@ export default function RegisterScreen() {
           <TextInput
             style={style.input}
             placeholder="Phone"
+            keyboardType="phone-pad"
             onChangeText={(e) =>
               setUser((prv) => {
                 return {
